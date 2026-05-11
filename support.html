@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CartChkr Support — Help, FAQs & Release Notes</title>
+  <meta name="description" content="CartChkr support centre — knowledge base, FAQs, release notes and contact for the Woolworths vs Coles price comparison Chrome extension." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23B91C1C'/><text y='24' x='4' font-size='22' fill='white'>🛒</text></svg>" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:    #B91C1C;
+      --red-dk: #991b1b;
+      --green:  #1a8c37;
+      --green-lt: #dcfce7;
+      --dark:   #0f0f1e;
+      --body:   #1e1e2e;
+      --surface:#27273a;
+      --border: #3a3a52;
+      --muted:  #9090a8;
+      --text:   #e8e8f0;
+      --text-sm:#c0c0d0;
+      --white:  #ffffff;
+      --radius: 10px;
+      --shadow: 0 2px 12px rgba(0,0,0,0.35);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    a { color: var(--green); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Header ── */
+    .site-header {
+      background: var(--body);
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .header-inner {
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-text { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
+    .logo-text .cart { color: var(--red); }
+    .logo-text .chkr { color: var(--green); }
+    .header-nav { display: flex; gap: 8px; }
+    .header-nav a {
+      color: var(--text-sm); font-size: 13px; padding: 6px 14px;
+      border-radius: 6px; transition: background 0.15s;
+    }
+    .header-nav a:hover { background: var(--surface); text-decoration: none; }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, var(--body) 0%, #1a1a2e 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 56px 24px 48px;
+      text-align: center;
+    }
+    .hero h1 { font-size: 36px; font-weight: 800; margin-bottom: 12px; }
+    .hero h1 span { color: var(--green); }
+    .hero p { color: var(--text-sm); font-size: 16px; max-width: 520px; margin: 0 auto 28px; }
+
+    .search-wrap { max-width: 520px; margin: 0 auto; position: relative; }
+    .search-wrap input {
+      width: 100%; padding: 14px 20px 14px 48px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 30px; color: var(--text); font-size: 15px;
+      outline: none; transition: border-color 0.2s;
+    }
+    .search-wrap input::placeholder { color: var(--muted); }
+    .search-wrap input:focus { border-color: var(--green); }
+    .search-icon {
+      position: absolute; left: 18px; top: 50%; transform: translateY(-50%);
+      color: var(--muted); font-size: 18px; pointer-events: none;
+    }
+    #searchResults {
+      position: absolute; top: calc(100% + 8px); left: 0; right: 0;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+      box-shadow: var(--shadow); display: none; z-index: 200;
+    }
+    .search-result-item {
+      padding: 12px 20px; cursor: pointer; border-bottom: 1px solid var(--border);
+      transition: background 0.12s;
+    }
+    .search-result-item:last-child { border-bottom: none; }
+    .search-result-item:hover { background: var(--body); }
+    .search-result-item strong { display: block; font-size: 14px; color: var(--text); }
+    .search-result-item span { font-size: 12px; color: var(--muted); }
+
+    /* ── Version badge ── */
+    .version-strip {
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: 10px 24px; text-align: center;
+      font-size: 13px; color: var(--muted);
+    }
+    .version-strip strong { color: var(--green); }
+    .version-strip a { color: var(--muted); margin-left: 12px; }
+    .version-strip a:hover { color: var(--text); }
+
+    /* ── Tabs ── */
+    .tabs-bar {
+      background: var(--body); border-bottom: 1px solid var(--border);
+      display: flex; justify-content: center; gap: 0; padding: 0 24px;
+    }
+    .tab-btn {
+      background: none; border: none; color: var(--muted); cursor: pointer;
+      font-size: 14px; font-weight: 600; padding: 16px 24px;
+      border-bottom: 2px solid transparent; margin-bottom: -1px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .tab-btn:hover { color: var(--text); }
+    .tab-btn.active { color: var(--green); border-bottom-color: var(--green); }
+
+    /* ── Layout ── */
+    .main { max-width: 1100px; margin: 0 auto; padding: 40px 24px 80px; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ── Section title ── */
+    .section-title {
+      font-size: 22px; font-weight: 800; margin-bottom: 24px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-title::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+
+    /* ── KB Cards ── */
+    .kb-grid { display: grid; gap: 16px; }
+    .kb-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .kb-card:hover { border-color: var(--green); }
+    .kb-card-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 20px; cursor: pointer; gap: 12px;
+    }
+    .kb-card-header-left { display: flex; align-items: center; gap: 12px; flex: 1; }
+    .kb-id {
+      font-size: 11px; font-weight: 700; color: var(--muted);
+      background: var(--body); border-radius: 4px; padding: 2px 7px;
+      white-space: nowrap; border: 1px solid var(--border);
+    }
+    .kb-card-title { font-size: 15px; font-weight: 600; }
+    .kb-cat-badge {
+      font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 20px;
+      white-space: nowrap;
+    }
+    .cat-user { background: #1d4ed820; color: #60a5fa; border: 1px solid #1d4ed840; }
+    .cat-limitation { background: #92400e20; color: #fbbf24; border: 1px solid #92400e40; }
+    .cat-bug { background: #991b1b20; color: #f87171; border: 1px solid #991b1b40; }
+    .cat-intermittent { background: #5b21b620; color: #c084fc; border: 1px solid #5b21b640; }
+
+    .kb-chevron { color: var(--muted); font-size: 12px; transition: transform 0.2s; flex-shrink: 0; }
+    .kb-card.open .kb-chevron { transform: rotate(180deg); }
+
+    .kb-card-body { display: none; padding: 0 20px 20px; }
+    .kb-card.open .kb-card-body { display: block; }
+
+    .kb-symptoms { color: var(--text-sm); font-size: 13px; margin-bottom: 16px; font-style: italic; }
+
+    .kb-steps { list-style: none; counter-reset: steps; }
+    .kb-steps li {
+      counter-increment: steps; position: relative;
+      padding: 8px 0 8px 36px; border-bottom: 1px solid var(--border);
+      font-size: 14px; color: var(--text-sm);
+    }
+    .kb-steps li:last-child { border-bottom: none; }
+    .kb-steps li::before {
+      content: counter(steps);
+      position: absolute; left: 0; top: 8px;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--green); color: white;
+      font-size: 11px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .kb-note {
+      margin-top: 12px; padding: 10px 14px;
+      background: var(--body); border-left: 3px solid var(--green);
+      border-radius: 0 6px 6px 0; font-size: 13px; color: var(--muted);
+    }
+
+    /* ── FAQ ── */
+    .faq-list { display: grid; gap: 12px; }
+    .faq-item {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+    }
+    .faq-q {
+      padding: 18px 20px; cursor: pointer; font-weight: 600; font-size: 15px;
+      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    }
+    .faq-q:hover { background: var(--body); }
+    .faq-chevron { color: var(--muted); font-size: 12px; transition: transform 0.2s; flex-shrink: 0; }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-a {
+      display: none; padding: 0 20px 18px;
+      font-size: 14px; color: var(--text-sm); line-height: 1.7;
+    }
+    .faq-item.open .faq-a { display: block; }
+    .faq-a p { margin-bottom: 10px; }
+    .faq-a p:last-child { margin-bottom: 0; }
+    .faq-a ul { padding-left: 20px; margin-top: 6px; }
+    .faq-a ul li { margin-bottom: 6px; }
+    .faq-a a { color: var(--green); }
+    .pill {
+      display: inline-block; font-size: 12px; padding: 2px 9px;
+      border-radius: 20px; font-weight: 600;
+    }
+    .pill-free { background: var(--green-lt); color: var(--green); }
+    .pill-paid { background: #fef3c720; color: #fbbf24; border: 1px solid #92400e40; }
+
+    /* ── Release Notes ── */
+    .releases { display: grid; gap: 24px; }
+    .release {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+    }
+    .release-header {
+      display: flex; align-items: center; gap: 16px;
+      padding: 20px 24px; border-bottom: 1px solid var(--border);
+      background: var(--body);
+    }
+    .release-version {
+      font-size: 20px; font-weight: 800; color: var(--green);
+    }
+    .release-date { font-size: 13px; color: var(--muted); }
+    .release-badge {
+      margin-left: auto; font-size: 11px; font-weight: 700;
+      padding: 3px 10px; border-radius: 20px;
+    }
+    .badge-latest { background: var(--green); color: white; }
+    .badge-stable { background: var(--surface); color: var(--muted); border: 1px solid var(--border); }
+
+    .release-body { padding: 20px 24px; }
+    .release-section { margin-bottom: 20px; }
+    .release-section:last-child { margin-bottom: 0; }
+    .release-section-title {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--muted); margin-bottom: 10px;
+    }
+    .release-items { list-style: none; display: grid; gap: 8px; }
+    .release-items li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 14px; color: var(--text-sm);
+    }
+    .release-items li .ri { flex-shrink: 0; font-size: 14px; }
+    .ri-new { color: var(--green); }
+    .ri-fix { color: #60a5fa; }
+    .ri-improve { color: #fbbf24; }
+    .ri-internal { color: var(--muted); }
+
+    /* ── Contact ── */
+    .contact-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 32px; text-align: center;
+      margin-top: 40px;
+    }
+    .contact-card h3 { font-size: 20px; margin-bottom: 8px; }
+    .contact-card p { color: var(--text-sm); margin-bottom: 20px; font-size: 14px; }
+    .contact-btn {
+      display: inline-block; padding: 12px 28px;
+      background: var(--red); color: white; border-radius: 8px;
+      font-weight: 700; font-size: 14px; transition: background 0.15s;
+    }
+    .contact-btn:hover { background: var(--red-dk); text-decoration: none; }
+
+    /* ── Footer ── */
+    .site-footer {
+      background: var(--body); border-top: 1px solid var(--border);
+      padding: 32px 24px; text-align: center;
+      font-size: 13px; color: var(--muted);
+    }
+    .site-footer a { color: var(--muted); margin: 0 12px; }
+    .site-footer a:hover { color: var(--text); }
+
+    /* ── No-results ── */
+    .no-results { text-align: center; padding: 60px 20px; color: var(--muted); }
+    .no-results h3 { font-size: 18px; margin-bottom: 8px; color: var(--text-sm); }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 26px; }
+      .tab-btn { padding: 14px 14px; font-size: 13px; }
+      .header-nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Site Header ── -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="https://cartchkr.com.au">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="28" height="28" rx="7" fill="#1e1e2e" stroke="#3a3a52" stroke-width="1"/>
+        <path d="M2 9.5H5L5.5 11" stroke="#B91C1C" stroke-width="2" stroke-linecap="round"/>
+        <path d="M5.5 11H22.5L21 21H7Z" fill="#B91C1C"/>
+        <circle cx="9" cy="23.5" r="2.2" fill="#B91C1C"/>
+        <circle cx="19.5" cy="23.5" r="2.2" fill="#B91C1C"/>
+        <circle cx="22" cy="11" r="5.5" fill="#1a8c37"/>
+        <path d="M19.5 11L21.5 13.5L25.5 8.5" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="logo-text"><span class="cart">Cart</span><span class="chkr">Chkr</span></span>
+    </a>
+    <nav class="header-nav">
+      <a href="https://cartchkr.com.au">Home</a>
+      <a href="https://cartchkr.com.au/privacy.html">Privacy</a>
+      <a href="https://cartchkr.com.au/terms.html">Terms</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ── Version strip ── -->
+<div class="version-strip">
+  Current version: <strong>v0.2.0</strong> — released 11 May 2026
+  <a href="#releases" onclick="switchTab('releases')">Release notes ↓</a>
+</div>
+
+<!-- ── Hero ── -->
+<section class="hero">
+  <h1>CartChkr <span>Support Centre</span></h1>
+  <p>Find answers, troubleshoot issues, and learn how CartChkr works.</p>
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="Search — e.g. 'wrong price', 'move button', 'scan failed'…" autocomplete="off" />
+    <div id="searchResults"></div>
+  </div>
+</section>
+
+<!-- ── Tabs ── -->
+<div class="tabs-bar" id="tabsBar">
+  <button class="tab-btn active" onclick="switchTab('kb')" data-tab="kb">Knowledge Base</button>
+  <button class="tab-btn" onclick="switchTab('faq')" data-tab="faq">FAQ</button>
+  <button class="tab-btn" onclick="switchTab('releases')" data-tab="releases" id="releasesTab">Release Notes</button>
+</div>
+
+<!-- ── Main ── -->
+<main class="main">
+
+  <!-- ════════════════════════════════════ KB ════════════════════════════════ -->
+  <div class="tab-panel active" id="tab-kb">
+    <h2 class="section-title">Knowledge Base</h2>
+    <div class="kb-grid" id="kbGrid">
+
+      <!-- KB-001 -->
+      <div class="kb-card" id="KB-001">
+        <div class="kb-card-header" onclick="toggleKb(this)">
+          <div class="kb-card-header-left">
+            <span class="kb-id">KB-001</span>
+            <span class="kb-cat-badge cat-user">User-side</span>
+            <span class="kb-card-title">Extension shows nothing / blank panel</span>
+          </div>
+          <span class="kb-chevron">▼</span>
+        </div>
+        <div class="kb-card-body">
+          <p class="kb-symptoms">Side panel opens but is empty, or shows a spinner that never completes.</p>
+          <ol class="kb-steps">
+            <li>Close and reopen the CartChkr side panel — click the toolbar icon to close it, then click again to reopen.</li>
+            <li>If that doesn't help: reload your Woolies or Coles tab (<strong>Ctrl+R</strong> on PC / <strong>Cmd+R</strong> on Mac), then reopen the panel.</li>
+            <li>Still blank? Go to <code>chrome://extensions</code> → find CartChkr → click the circular refresh arrow to reload the extension.</li>
+          </ol>
+          <div class="kb-note">This usually happens just after installing or updating CartChkr. Chrome needs a page reload before the extension can connect to it.</div>
+        </div>
+      </div>
+
+      <!-- KB-002 -->
+      <div class="kb-card" id="KB-002">
+        <div class="kb-card-header" onclick="toggleKb(this)">
+          <div class="kb-card-header-left">
+            <span class="kb-id">KB-002</span>
+            <span class="kb-cat-badge cat-intermittent">Intermittent</span>
+            <span class="kb-card-title">Wrong price shown for an item</span>
+          </div>
+          <span class="kb-chevron">▼</span>
+        </div>
+        <div class="kb-card-body">
+          <p class="kb-symptoms">CartChkr shows a price that doesn't match what you see on the store website.</p>
+          <ol class="kb-steps">
+            <li>Check if the item is a <strong>multi-pack</strong> (e.g. 3-pack of yoghurt). CartChkr normalises to a per-unit price for a fair comparison — the price shown may be per-unit, not per-pack.</li>
+            <li>Reload your Woolies or Coles cart tab and scan again. Specials update weekly and there can be a brief lag.</li>
+            <li>If the price is still wrong, report it with: the <strong>item name</strong>, the price CartChkr shows, the actual price on the website, and your <strong>diagnostic logs</strong> (click ⚙ in CartChkr → Copy Logs).</li>
+          </ol>
+          <div class="kb-note">A known issue with Woolworths sale price data was fixed in v0.2.0. Update your extension if you're on an older version.</div>
+        </div>
+      </div>
+
+      <!-- KB-003 -->
+      <div class="kb-card" id="KB-003">
+        <div class="kb-card-header" onclick="toggleKb(this)">
+          <div class="kb-card-header-left">
+            <span class="kb-id">KB-003</span>
+            <span class="kb-cat-badge cat-limitation">Known limitation</span>
+            <span class="kb-card-title">Item shows "no match" but it exists at the other store</span>
+          </div>
+          <span class="kb-chevron">▼</span>
+        </div>
+        <div class="kb-card-body">
+          <p class="kb-symptoms">An item shows the "no match" badge even though you can find it at the other store manually.</p>
+          <ol class="kb-steps">
+            <li>Click the <strong>Search</strong> link next to the "no match" item. This opens a pre-filled search on the other store so you can find it manually.</li>
+            <li>If you find the right product, click <strong>✓</strong> to pin that match — CartChkr will remember it for every future scan.</li>
+            <li>If the store was recently bot-blocked (you'll see a warning during the scan), wait 5–10 minutes and scan again.</li>
+          </ol>
+          <div class="kb-note">Some products have very different names between stores (e.g. Woolworths Select vs Coles brand). CartChkr will improve matching over time — pinning correct matches helps.</div>
+        </div>
+      </div>
+
+      <!-- KB-004 -->
+      <div class="kb-card" id="KB-004">
+        <div class="kb-card-header" onclick="toggleKb(this)">
+          <div class="kb-card-header-left">
+            <span class="kb-id">KB-004</span>
+            <span class="kb-cat-badge cat-user">User-side</span>
+            <span class="kb-card-title">Wrong product matched (different brand or size)</span>
+          </div>
+          <span class="kb-chevron">▼</span>
+        </div>
+        <div class="kb-card-body">
+          <p class="kb-symptoms">CartChkr matched your item to a different brand or wrong size at the other store.</p>
+          <ol class="kb-steps">
+            <li>Click the <strong>✕</strong> button on the item card to reject the wrong match. CartChkr will search for better alternatives.</li>
+            <li>If a better match appears in the results, click <strong>✓</strong> to pin it. CartChkr will remember this for every future scan.</li>
+            <li>If there's no good equivalent at the other store, the item will show as "no match" — which is the most accurate result.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- KB-005 -->
+      <div class="kb-card" id="KB-005">
+        <div class="kb-card-header" onclick="toggleKb(this)">
+          <div class="kb-card-header-left">
+            <span class="kb-id">KB-005</span>
+            <span class="kb-cat-badge cat-intermittent">Intermittent</span>
+            <span class="kb-card-title">Move button doesn't work / item not added</span>
+          </div>
+          <span class="kb-chevron">▼</span>
+        </div>
+        <div class="kb-card-body">
+          <p class="kb-symptoms">Clicked Move (→C or →W), button spun, but item didn't appear in the other store's cart.</p>
+          <ol class="kb-steps">
+            <li>Make sure you're <strong>logged in to both Woolies and Coles</strong>. CartChkr needs an active session on both stores.</li>
+            <li>Have <strong>both store cart pages open in separate tabs</strong> before scanning.</li>
+            <li>If you see a bot-block warning: open the target store's website, browse normally for about 30 seconds (add something to cart, scroll through products), then try Move again.</li>
+            <li>Check that the item is actually in stock at the target store.</li>
+          </ol>
+          <div class="kb-note">The Move feature requires a paid licence. If you're seeing the upgrade prompt, scan is free — Move is the paid feature.</div>
+        </div>
+      </div>
+
+      <!-- KB-006 -->
+      <div class="kb-card" id="KB-006">
+        <div class="kb-card-header" onclick="toggleKb(this)">
+          <div class="kb-card-header-left">
+            <span class="kb-id">KB-006</span>
+            <span class="kb-cat-badge cat-intermittent">Intermittent</span>
+            <span class="kb-card-title">Scan failed or returned no results</span>
+          </div>
+          <span class="kb-chevron">▼</span>
+        </div>
+        <div class="kb-card-body">
+          <p class="kb-symptoms">Scan starts but stops partway, shows an error, or completes with 0 results.</p>
+          <ol class="kb-steps">
+            <li>Make sure you're on the <strong>cart/trolley page</strong>, not the home page or a product page.
+              <br>• Woolies cart: <a href="https://woolworths.com.au/cart" target="_blank">woolworths.com.au/cart</a>
+              <br>• Coles trolley: <a href="https://coles.com.au/trolley" target="_blank">coles.com.au/trolley</a>
+            </li>
+            <li>Confirm you're <strong>logged in</strong> to the store you're scanning and have at least 1 item in your cart.</li>
+            <li>If it's a bot-block (you'll see a warning in the panel): wait 5–10 minutes, reload the store page, and scan again.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- KB-007 -->
+      <div class="kb-card" id="KB-007">
+        <div class="kb-card-header" onclick="toggleKb(this)">
+          <div class="kb-card-header-left">
+            <span class="kb-id">KB-007</span>
+            <span class="kb-cat-badge cat-user">User-side</span>
+            <span class="kb-card-title">Can't find CartChkr after installing</span>
+          </div>
+          <span class="kb-chevron">▼</span>
+        </div>
+        <div class="kb-card-body">
+          <p class="kb-symptoms">CartChkr is installed but you can't see it in Chrome's toolbar.</p>
+          <ol class="kb-steps">
+            <li>Click the <strong>puzzle piece icon 🧩</strong> in Chrome's toolbar (top right).</li>
+            <li>Find CartChkr in the list and click the <strong>pin icon</strong> to keep it visible.</li>
+            <li>Navigate to a Woolies or Coles page, then click the CartChkr icon. The side panel will open on the right side of your browser.</li>
+          </ol>
+          <div class="kb-note">CartChkr only activates on woolworths.com.au and coles.com.au pages. The icon may appear greyed out on other sites — this is normal.</div>
+        </div>
+      </div>
+
+      <!-- KB-008 -->
+      <div class="kb-card" id="KB-008">
+        <div class="kb-card-header" onclick="toggleKb(this)">
+          <div class="kb-card-header-left">
+            <span class="kb-id">KB-008</span>
+            <span class="kb-cat-badge cat-user">Expected behaviour</span>
+            <span class="kb-card-title">Prices changed after logging in with Everyday Rewards</span>
+          </div>
+          <span class="kb-chevron">▼</span>
+        </div>
+        <div class="kb-card-body">
+          <p class="kb-symptoms">Prices look different after logging in with an Everyday Rewards account.</p>
+          <ol class="kb-steps">
+            <li>This is <strong>correct behaviour</strong>. CartChkr uses your actual logged-in prices, including Everyday Rewards member pricing which is often lower than the shelf price.</li>
+            <li>Always make sure you're <strong>logged in to Woolworths with your Everyday Rewards account</strong> before scanning — this gives you the most accurate and personally relevant comparison.</li>
+          </ol>
+          <div class="kb-note">Member specials are included automatically. The comparison you see reflects YOUR prices, not the general shelf price.</div>
+        </div>
+      </div>
+
+      <!-- KB-009 -->
+      <div class="kb-card" id="KB-009">
+        <div class="kb-card-header" onclick="toggleKb(this)">
+          <div class="kb-card-header-left">
+            <span class="kb-id">KB-009</span>
+            <span class="kb-cat-badge cat-limitation">Known limitation</span>
+            <span class="kb-card-title">Bot-block warning shown during scan</span>
+          </div>
+          <span class="kb-chevron">▼</span>
+        </div>
+        <div class="kb-card-body">
+          <p class="kb-symptoms">CartChkr shows a bot-block warning; some items can't be compared.</p>
+          <ol class="kb-steps">
+            <li>This is <strong>temporary</strong> — Woolies and Coles have security systems that occasionally flag the comparison requests. It usually clears within 5–10 minutes.</li>
+            <li>Browse the affected store's website normally for 1–2 minutes (scroll through products, add something to cart) to reset your session.</li>
+            <li>Scan again. The block almost always clears on the next attempt.</li>
+            <li>Scanning <strong>smaller carts (under 30 items)</strong> is less likely to trigger this.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- KB-010 -->
+      <div class="kb-card" id="KB-010">
+        <div class="kb-card-header" onclick="toggleKb(this)">
+          <div class="kb-card-header-left">
+            <span class="kb-id">KB-010</span>
+            <span class="kb-cat-badge cat-user">User-side</span>
+            <span class="kb-card-title">Payment made but Move is still locked</span>
+          </div>
+          <span class="kb-chevron">▼</span>
+        </div>
+        <div class="kb-card-body">
+          <p class="kb-symptoms">You paid but the Move button still shows the upgrade prompt.</p>
+          <ol class="kb-steps">
+            <li><strong>Close the CartChkr panel completely</strong> — click the ✕ or the toolbar icon to close it.</li>
+            <li><strong>Reopen CartChkr</strong> by clicking the toolbar icon again. The licence check runs fresh every time the panel opens.</li>
+            <li>The Move feature should now be unlocked. If it's still showing the upgrade prompt after reopening, email <a href="mailto:support@cartchkr.com.au">support@cartchkr.com.au</a> with your payment confirmation and we'll sort it out manually.</li>
+          </ol>
+        </div>
+      </div>
+
+    </div><!-- /kb-grid -->
+
+    <div class="contact-card">
+      <h3>Still stuck?</h3>
+      <p>If none of the above helped, email us and we'll get back to you with your own reference number within 24 hours.</p>
+      <a class="contact-btn" href="mailto:support@cartchkr.com.au?subject=CartChkr Support Request">Email support</a>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════ FAQ ═══════════════════════════════ -->
+  <div class="tab-panel" id="tab-faq">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Is CartChkr free? <span class="faq-chevron">▼</span>
+        </div>
+        <div class="faq-a">
+          <p><span class="pill pill-free">Free</span> Scanning is completely free. Add items to your Woolies or Coles cart, press Scan, and CartChkr will compare every item against the other store and show you which is cheaper — no payment required, ever.</p>
+          <p><span class="pill pill-paid">Paid</span> The <strong>Move</strong> feature — which transfers your whole cart to the cheaper store in one click — requires a licence. We offer three options:</p>
+          <ul>
+            <li><strong>Founding Member</strong> — 99¢ one-time (limited-time early adopter price)</li>
+            <li><strong>Lifetime</strong> — $3.99 one-time, full access forever</li>
+            <li><strong>Monthly</strong> — $2.99/month, full access + early access to new stores</li>
+          </ul>
+          <p>Most users save $15–$25 per shop, so the licence pays for itself the first time you use it.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          How does CartChkr compare prices? <span class="faq-chevron">▼</span>
+        </div>
+        <div class="faq-a">
+          <p>CartChkr reads your cart directly from the Woolworths or Coles website using your logged-in session. It then searches for each item at the other store and compares the live prices — including any member specials, Everyday Rewards pricing, or Coles member discounts you're entitled to.</p>
+          <p>Everything runs locally in your browser. CartChkr never sends your cart contents, login details, or personal information anywhere.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Does CartChkr work with Everyday Rewards? <span class="faq-chevron">▼</span>
+        </div>
+        <div class="faq-a">
+          <p>Yes. As long as you're logged in to Woolworths with your Everyday Rewards account before scanning, CartChkr will use your member pricing automatically. The comparison you see reflects your actual prices — not the general shelf price.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Is my data private? Does CartChkr collect anything? <span class="faq-chevron">▼</span>
+        </div>
+        <div class="faq-a">
+          <p>CartChkr does not collect, store, or transmit your cart contents, passwords, payment details, or any personal information. Everything runs locally in your browser.</p>
+          <p>The only external service CartChkr contacts is <strong>ExtensionPay</strong> (via Stripe) to verify your licence status if you've purchased one. See our <a href="/privacy.html">Privacy Policy</a> for full details.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Why does the same item sometimes cost more at Woolies one week and less the next? <span class="faq-chevron">▼</span>
+        </div>
+        <div class="faq-a">
+          <p>Woolworths and Coles run weekly specials that rotate constantly. Hundreds of items change price every week depending on supplier deals, promotional calendars, and competition between the stores. There's no consistent pattern — the cheaper store genuinely changes week to week for most households.</p>
+          <p>That's exactly why CartChkr exists: checking manually takes 20+ minutes. CartChkr does it in 10 seconds.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Does CartChkr work on mobile or iPad? <span class="faq-chevron">▼</span>
+        </div>
+        <div class="faq-a">
+          <p>CartChkr is a Chrome desktop extension and works on Windows and Mac computers. Chrome extensions are not supported on Chrome for iOS or Android, so CartChkr does not work on mobile browsers.</p>
+          <p>Mobile support is on our roadmap — follow <a href="https://cartchkr.com.au">cartchkr.com.au</a> for updates.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Can CartChkr compare ALDI prices too? <span class="faq-chevron">▼</span>
+        </div>
+        <div class="faq-a">
+          <p>Not yet. CartChkr currently compares Woolworths and Coles. ALDI doesn't have a comparable online shopping experience with cart functionality, which makes comparison technically different. It's on the roadmap.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          How do I cancel my monthly subscription? <span class="faq-chevron">▼</span>
+        </div>
+        <div class="faq-a">
+          <p>Open CartChkr → click the ⚙ icon → Manage subscription. This opens your ExtensionPay billing portal where you can cancel anytime. Your access continues until the end of the billing period.</p>
+          <p>If you have trouble, email <a href="mailto:support@cartchkr.com.au">support@cartchkr.com.au</a> and we'll sort it out.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          I paid but the Move feature is still locked — what do I do? <span class="faq-chevron">▼</span>
+        </div>
+        <div class="faq-a">
+          <p>Close the CartChkr side panel completely (click the ✕ or toolbar icon), then reopen it. The licence check runs fresh every time the panel opens and should activate immediately.</p>
+          <p>If it's still locked after reopening, email <a href="mailto:support@cartchkr.com.au">support@cartchkr.com.au</a> with your payment confirmation email and we'll manually verify and activate your account.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Is CartChkr affiliated with Woolworths or Coles? <span class="faq-chevron">▼</span>
+        </div>
+        <div class="faq-a">
+          <p>No. CartChkr is an independent tool built by an Australian developer. It is not affiliated with, endorsed by, or connected to Woolworths Group or Coles Group in any way.</p>
+        </div>
+      </div>
+
+    </div><!-- /faq-list -->
+  </div>
+
+  <!-- ════════════════════════════════ RELEASES ══════════════════════════════ -->
+  <div class="tab-panel" id="tab-releases">
+    <h2 class="section-title">Release Notes</h2>
+    <div class="releases">
+
+      <!-- v0.2.0 -->
+      <div class="release">
+        <div class="release-header">
+          <span class="release-version">v0.2.0</span>
+          <span class="release-date">11 May 2026</span>
+          <span class="release-badge badge-latest">Latest</span>
+        </div>
+        <div class="release-body">
+          <div class="release-section">
+            <div class="release-section-title">✨ New features</div>
+            <ul class="release-items">
+              <li><span class="ri ri-new">✦</span><span><strong>Bidirectional scanning</strong> — scan from Coles and compare to Woolworths, as well as the original Woolies → Coles direction.</span></li>
+              <li><span class="ri ri-new">✦</span><span><strong>Move feature</strong> — transfer your entire cart to the cheaper store in one click (paid licence required).</span></li>
+              <li><span class="ri ri-new">✦</span><span><strong>ExtensionPay integration</strong> — Founding (99¢), Lifetime ($3.99), and Monthly ($2.99) licence tiers via Stripe. No account required.</span></li>
+              <li><span class="ri ri-new">✦</span><span><strong>Auto-update banner</strong> — when a new version is available, a one-click reload banner appears inside the panel. No need to visit the extensions page.</span></li>
+              <li><span class="ri ri-new">✦</span><span><strong>Report Issue button</strong> — one click in the footer opens a pre-filled support email with your diagnostic logs already attached.</span></li>
+              <li><span class="ri ri-new">✦</span><span><strong>Saved matches</strong> — pin correct product matches and block incorrect ones. CartChkr remembers them for every future scan.</span></li>
+            </ul>
+          </div>
+          <div class="release-section">
+            <div class="release-section-title">🔧 Fixes</div>
+            <ul class="release-items">
+              <li><span class="ri ri-fix">◆</span><span>Fixed Woolworths SalePrice API ambiguity causing some items to show the wrong price.</span></li>
+              <li><span class="ri ri-fix">◆</span><span>Fixed scan completing but showing 0 results on some Coles cart page layouts.</span></li>
+              <li><span class="ri ri-fix">◆</span><span>Improved bot-block detection — panel now shows a clear warning rather than silently failing.</span></li>
+            </ul>
+          </div>
+          <div class="release-section">
+            <div class="release-section-title">⚡ Improvements</div>
+            <ul class="release-items">
+              <li><span class="ri ri-improve">●</span><span>Progress bar now shows item-by-item progress during scan.</span></li>
+              <li><span class="ri ri-improve">●</span><span>Filter badges (cheaper / same / more / no match) now clickable to filter the results list.</span></li>
+              <li><span class="ri ri-improve">●</span><span>Diagnostic logs now include query trace, bot-block flags, and attempted URL shapes for faster support triage.</span></li>
+              <li><span class="ri ri-improve">●</span><span>Full visual redesign — dark theme, cleaner card layout, colour-coded comparison badges.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- v0.1.0 -->
+      <div class="release">
+        <div class="release-header">
+          <span class="release-version">v0.1.0</span>
+          <span class="release-date">2 May 2026</span>
+          <span class="release-badge badge-stable">Initial release</span>
+        </div>
+        <div class="release-body">
+          <div class="release-section">
+            <div class="release-section-title">✨ Features</div>
+            <ul class="release-items">
+              <li><span class="ri ri-new">✦</span><span><strong>Woolworths → Coles comparison</strong> — scan your Woolies cart and see which items are cheaper at Coles.</span></li>
+              <li><span class="ri ri-new">✦</span><span><strong>Live prices</strong> — uses your logged-in session including Everyday Rewards member pricing.</span></li>
+              <li><span class="ri ri-new">✦</span><span><strong>Item-by-item breakdown</strong> — cheaper, same price, more expensive, and no match badges for every item.</span></li>
+              <li><span class="ri ri-new">✦</span><span><strong>Savings total</strong> — shows your potential saving at a glance.</span></li>
+              <li><span class="ri ri-new">✦</span><span><strong>Diagnostic logs</strong> — copy full scan diagnostics to clipboard for support.</span></li>
+              <li><span class="ri ri-new">✦</span><span><strong>Privacy-first</strong> — no data collected, no account required, everything runs locally.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /releases -->
+  </div>
+
+</main>
+
+<!-- ── Footer ── -->
+<footer class="site-footer">
+  <div>
+    <a href="https://cartchkr.com.au">Home</a>
+    <a href="https://cartchkr.com.au/privacy.html">Privacy Policy</a>
+    <a href="https://cartchkr.com.au/terms.html">Terms of Use</a>
+    <a href="mailto:support@cartchkr.com.au">support@cartchkr.com.au</a>
+  </div>
+  <div style="margin-top:12px;">CartChkr is not affiliated with Woolworths Group or Coles Group. © 2026 CartChkr.</div>
+</footer>
+
+<script>
+// ── Search index ─────────────────────────────────────────────────────────────
+const KB_INDEX = [
+  { id:'KB-001', title:'Extension shows nothing / blank panel',       keywords:'blank nothing showing not loading spinner empty panel white screen' },
+  { id:'KB-002', title:'Wrong price shown for an item',               keywords:'wrong price incorrect price doesnt match price is wrong showing wrong price' },
+  { id:'KB-003', title:'Item shows no match',                         keywords:'no match cant find not finding missing items item not found doesnt find' },
+  { id:'KB-004', title:'Wrong product matched',                       keywords:'wrong match wrong product different brand wrong size not the same product' },
+  { id:'KB-005', title:'Move button doesn\'t work',                   keywords:'move doesnt work move failed not adding cant move switch failed button not working move button' },
+  { id:'KB-006', title:'Scan failed or returned no results',          keywords:'scan failed scan error not working 0 results no results error during scan' },
+  { id:'KB-007', title:'Can\'t find CartChkr after installing',       keywords:'cant find extension where is it not visible disappeared cant see cartchkr not in toolbar' },
+  { id:'KB-008', title:'Prices changed after Everyday Rewards login', keywords:'everyday rewards member price logged in price prices changed' },
+  { id:'KB-009', title:'Bot-block warning shown during scan',         keywords:'bot block blocked incapsula captcha being blocked security block banned' },
+  { id:'KB-010', title:'Payment made but Move is still locked',       keywords:'paid but still locked still showing upgrade payment not working licence not working cant access move after paying purchased but' },
+];
+
+const FAQ_INDEX = [
+  { text:'Is CartChkr free?',                              idx:0 },
+  { text:'How does CartChkr compare prices?',              idx:1 },
+  { text:'Everyday Rewards member pricing',                idx:2 },
+  { text:'Privacy — does CartChkr collect data?',          idx:3 },
+  { text:'Why do prices change week to week?',             idx:4 },
+  { text:'Does CartChkr work on mobile or iPad?',          idx:5 },
+  { text:'ALDI — can CartChkr compare ALDI?',              idx:6 },
+  { text:'How do I cancel my monthly subscription?',       idx:7 },
+  { text:'Paid but Move is still locked',                  idx:8 },
+  { text:'Is CartChkr affiliated with Woolworths or Coles?', idx:9 },
+];
+
+const input = document.getElementById('searchInput');
+const results = document.getElementById('searchResults');
+
+input.addEventListener('input', () => {
+  const q = input.value.trim().toLowerCase();
+  if (q.length < 2) { results.style.display = 'none'; return; }
+
+  const hits = [];
+  KB_INDEX.forEach(item => {
+    if (item.title.toLowerCase().includes(q) || item.keywords.includes(q)) {
+      hits.push({ label: item.id + ' — ' + item.title, sub: 'Knowledge Base', action: () => openKb(item.id) });
+    }
+  });
+  FAQ_INDEX.forEach(item => {
+    if (item.text.toLowerCase().includes(q)) {
+      hits.push({ label: item.text, sub: 'FAQ', action: () => openFaq(item.idx) });
+    }
+  });
+
+  if (hits.length === 0) {
+    results.innerHTML = '<div class="search-result-item"><strong>No results found</strong><span>Try different keywords or email support@cartchkr.com.au</span></div>';
+  } else {
+    results.innerHTML = hits.slice(0, 6).map((h, i) =>
+      `<div class="search-result-item" data-idx="${i}"><strong>${h.label}</strong><span>${h.sub}</span></div>`
+    ).join('');
+    results.querySelectorAll('.search-result-item[data-idx]').forEach((el, i) => {
+      el.addEventListener('click', () => { hits[i].action(); results.style.display = 'none'; input.value = ''; });
+    });
+  }
+  results.style.display = 'block';
+});
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('.search-wrap')) results.style.display = 'none';
+});
+
+// ── Tabs ─────────────────────────────────────────────────────────────────────
+function switchTab(name) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name)?.classList.add('active');
+  document.querySelector(`[data-tab="${name}"]`)?.classList.add('active');
+  document.getElementById('tab-' + name)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ── KB accordion ─────────────────────────────────────────────────────────────
+function toggleKb(header) {
+  header.closest('.kb-card').classList.toggle('open');
+}
+
+function openKb(id) {
+  switchTab('kb');
+  setTimeout(() => {
+    const card = document.getElementById(id);
+    if (card) { card.classList.add('open'); card.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+  }, 100);
+}
+
+// ── FAQ accordion ─────────────────────────────────────────────────────────────
+function toggleFaq(qEl) {
+  qEl.closest('.faq-item').classList.toggle('open');
+}
+
+function openFaq(idx) {
+  switchTab('faq');
+  setTimeout(() => {
+    const items = document.querySelectorAll('.faq-item');
+    if (items[idx]) { items[idx].classList.add('open'); items[idx].scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+  }, 100);
+}
+
+// ── Handle #releases anchor ───────────────────────────────────────────────────
+if (window.location.hash === '#releases') switchTab('releases');
+</script>
+</body>
+</html>
