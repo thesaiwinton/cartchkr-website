@@ -562,10 +562,16 @@ footer a:hover { color:#fff; }
         noResults.classList.remove('show');
         return;
       }
+      // Word-by-word AND match — every search term must appear somewhere in
+      // the article text. Matches partial words too ("loading" matches
+      // "loading screen", "load", "downloading"). Stricter than literal-phrase
+      // match (so "coles not loading" finds the Imperva entry even though
+      // those exact words don't appear in that order).
+      const terms = q.split(/\s+/).filter(Boolean);
       let any = false;
       allQs.forEach(el => {
         const text = el.textContent.toLowerCase();
-        const match = text.includes(q);
+        const match = terms.every(term => text.includes(term));
         el.hidden = !match;
         if (match) any = true;
       });
