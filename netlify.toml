@@ -1,6 +1,13 @@
 [build]
   publish = "."
 
+# Pretty URL for /faq -> /faq.html
+[[redirects]]
+  from = "/faq"
+  to = "/faq.html"
+  status = 200
+
+# SPA-style fallback for anything else
 [[redirects]]
   from = "/*"
   to = "/index.html"

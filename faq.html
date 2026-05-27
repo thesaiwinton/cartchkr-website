@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CartChkr — FAQ</title>
+<meta name="description" content="Answers to common questions about CartChkr — the free Chrome extension that compares your Woolworths and Coles carts and moves cheaper items in one click." />
+<meta property="og:title" content="CartChkr — FAQ" />
+<meta property="og:description" content="Common questions about scanning, moving items, pricing, privacy, and what to do when Coles plays up." />
+<meta property="og:image" content="https://cartchkr.com.au/og-image.png" />
+<meta property="og:url" content="https://cartchkr.com.au/faq" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Crect width='128' height='128' rx='24' fill='white'/%3E%3Cline x1='12' y1='30' x2='28' y2='30' stroke='%23B91C1C' stroke-width='9' stroke-linecap='round'/%3E%3Cpath d='M28 30 L38 72 L96 72 L106 30 Z' fill='%23B91C1C'/%3E%3Ccircle cx='52' cy='92' r='11' fill='%23B91C1C'/%3E%3Ccircle cx='86' cy='92' r='11' fill='%23B91C1C'/%3E%3Ccircle cx='92' cy='40' r='28' fill='%231a8c37'/%3E%3Cpolyline points='78,40 88,51 108,27' fill='none' stroke='white' stroke-width='8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --brand-red:   #B91C1C;
+  --brand-green: #1a8c37;
+  --woolies:     #1a8c37;
+  --coles:       #e2231a;
+  --green:       #15803d;
+  --green-bg:    #dcfce7;
+  --accent:      #2563eb;
+  --accent-bg:   #eff6ff;
+  --red:         #b91c1c;
+  --red-bg:      #fee2e2;
+  --yellow:      #92400e;
+  --yellow-bg:   #fef3c7;
+  --bg:          #f8f9fa;
+  --surface:     #ffffff;
+  --fg:          #1a1a1a;
+  --muted:       #6b7280;
+  --border:      #e5e7eb;
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  background: var(--surface); color: var(--fg);
+  line-height: 1.6; font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--brand-green); }
+a:hover { text-decoration: underline; }
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,.94);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border); padding: 0 24px;
+}
+.nav-inner {
+  max-width: 1080px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; height: 56px;
+}
+.wordmark {
+  font-size: 22px; font-weight: 800; letter-spacing: -.02em;
+  display: flex; align-items: center; gap: 8px; text-decoration: none;
+}
+.wordmark .c1 { color: var(--brand-red); }
+.wordmark .c2 { color: var(--brand-green); }
+.nav-right { display: flex; align-items: center; gap: 18px; }
+.nav-link { color: var(--muted); font-size: 14px; font-weight: 600; text-decoration: none; }
+.nav-link:hover { color: var(--fg); text-decoration: none; }
+.nav-cta {
+  background: var(--brand-green); color: #fff; border: none;
+  border-radius: 100px; padding: 8px 20px; font-size: 14px;
+  font-weight: 700; cursor: pointer; text-decoration: none; transition: opacity .15s;
+}
+.nav-cta:hover { opacity: .85; text-decoration: none; }
+
+/* ── HERO ── */
+.faq-hero {
+  background: linear-gradient(160deg, #fff 0%, #f0fdf4 60%, #fff8f8 100%);
+  padding: 64px 24px 48px; border-bottom: 1px solid var(--border);
+  text-align: center;
+}
+.faq-hero h1 {
+  font-size: clamp(30px, 4.5vw, 48px); font-weight: 800;
+  line-height: 1.1; letter-spacing: -.02em; margin-bottom: 12px;
+}
+.faq-hero h1 em { font-style: normal; color: var(--brand-green); }
+.faq-hero p { font-size: clamp(15px, 1.6vw, 18px); color: var(--muted); max-width: 560px; margin: 0 auto 28px; }
+.faq-search-wrap { max-width: 520px; margin: 0 auto; position: relative; }
+.faq-search-wrap input {
+  width: 100%; padding: 14px 18px 14px 46px;
+  background: #fff; border: 1.5px solid var(--border);
+  border-radius: 100px; color: var(--fg); font-size: 15px;
+  transition: border-color .15s;
+}
+.faq-search-wrap input:focus { outline: none; border-color: var(--brand-green); }
+.faq-search-icon {
+  position: absolute; left: 18px; top: 50%; transform: translateY(-50%);
+  width: 18px; height: 18px; color: var(--muted);
+}
+
+/* ── CATEGORY JUMP-NAV ── */
+.faq-jump {
+  position: sticky; top: 56px; z-index: 90;
+  background: rgba(255,255,255,.96);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border); padding: 12px 24px;
+}
+.faq-jump-inner {
+  max-width: 1080px; margin: 0 auto;
+  display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+}
+.faq-jump a {
+  font-size: 13px; font-weight: 600; color: var(--muted);
+  padding: 6px 14px; border-radius: 100px; text-decoration: none;
+  border: 1px solid transparent; transition: background .15s, color .15s, border-color .15s;
+}
+.faq-jump a:hover { background: var(--green-bg); color: var(--green); border-color: var(--green-bg); text-decoration: none; }
+
+/* ── FAQ BODY ── */
+.faq-body { max-width: 820px; margin: 0 auto; padding: 56px 24px 24px; }
+.faq-category { margin-bottom: 56px; }
+.faq-category-label {
+  display: inline-block;
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .12em; color: var(--brand-green);
+  padding: 4px 12px; background: var(--green-bg);
+  border-radius: 100px; margin-bottom: 16px;
+}
+.faq-category > h2 {
+  font-size: clamp(22px, 3vw, 30px); font-weight: 800;
+  letter-spacing: -.02em; margin-bottom: 28px;
+}
+.faq-q {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 14px; padding: 24px 26px; margin-bottom: 14px;
+  scroll-margin-top: 130px;
+  transition: border-color .2s, box-shadow .2s;
+}
+.faq-q:target { border-color: var(--brand-green); box-shadow: 0 4px 18px rgba(26,140,55,.12); }
+.faq-q h3 {
+  font-size: 17px; font-weight: 700; line-height: 1.35;
+  margin-bottom: 10px; display: flex; align-items: baseline; gap: 8px;
+}
+.faq-q h3 .anchor-link {
+  opacity: 0; transition: opacity .15s;
+  color: var(--muted); font-weight: 400; font-size: 14px; text-decoration: none;
+}
+.faq-q:hover h3 .anchor-link, .faq-q:target h3 .anchor-link { opacity: 1; }
+.faq-q h3 .anchor-link:hover { color: var(--brand-green); }
+.faq-q .a { font-size: 15px; color: var(--muted); line-height: 1.65; }
+.faq-q .a p { margin-bottom: 10px; }
+.faq-q .a p:last-child { margin-bottom: 0; }
+.faq-q .a ul, .faq-q .a ol { margin: 10px 0 10px 24px; }
+.faq-q .a li { margin-bottom: 6px; }
+.faq-q .a strong { color: var(--fg); }
+.faq-q .a code {
+  background: var(--bg); padding: 1px 6px; border-radius: 4px;
+  font-size: 13px; font-family: "SF Mono", Menlo, monospace;
+}
+.faq-q[hidden] { display: none; }
+
+.no-results {
+  text-align: center; padding: 56px 24px; color: var(--muted);
+  display: none;
+}
+.no-results.show { display: block; }
+
+/* ── STILL STUCK ── */
+.still-stuck {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 56px 24px; text-align: center;
+}
+.still-stuck h2 { font-size: 24px; font-weight: 800; margin-bottom: 10px; }
+.still-stuck p { font-size: 15px; color: var(--muted); margin-bottom: 20px; }
+.still-stuck a.btn-primary {
+  background: var(--brand-green); color: #fff; border: none;
+  border-radius: 100px; padding: 12px 28px; font-size: 15px;
+  font-weight: 700; cursor: pointer; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: transform .15s, box-shadow .15s;
+  box-shadow: 0 4px 14px rgba(26,140,55,.3);
+}
+.still-stuck a.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(26,140,55,.4); text-decoration: none; }
+
+/* ── FOOTER ── */
+footer { background:#111; color:#6b7280; padding:32px 24px; font-size:13px; }
+footer a { color:#9ca3af; text-decoration:none; }
+footer a:hover { color:#fff; }
+.footer-inner { max-width:1080px; margin:0 auto; display:flex; flex-direction:column; gap:12px; align-items:center; }
+.footer-links { display:flex; gap:20px; flex-wrap:wrap; justify-content:center; }
+.footer-legal { font-size:11px; color:#4b5563; text-align:center; border-top:1px solid #1f2937; padding-top:12px; margin-top:4px; max-width:700px; line-height:1.6; }
+
+@media (max-width: 600px) {
+  .faq-body { padding: 40px 18px 20px; }
+  .faq-q { padding: 20px 20px; }
+  .nav-link { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="wordmark" href="/">
+      <svg width="30" height="30" viewBox="0 0 128 128" fill="none">
+        <rect width="128" height="128" rx="24" fill="white" stroke="#e0e2e9" stroke-width="2"/>
+        <line x1="12" y1="30" x2="28" y2="30" stroke="#B91C1C" stroke-width="9" stroke-linecap="round"/>
+        <path d="M28 30 L38 72 L96 72 L106 30 Z" fill="#B91C1C"/>
+        <circle cx="52" cy="92" r="11" fill="#B91C1C"/>
+        <circle cx="86" cy="92" r="11" fill="#B91C1C"/>
+        <circle cx="92" cy="40" r="28" fill="#1a8c37"/>
+        <polyline points="78,40 88,51 108,27" fill="none" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span><span class="c1">Cart</span><span class="c2">Chkr</span></span>
+    </a>
+    <div class="nav-right">
+      <a class="nav-link" href="/#how-it-works">How it works</a>
+      <a class="nav-link" href="/#pricing">Pricing</a>
+      <a class="nav-cta" href="https://chromewebstore.google.com/detail/cartchkr/dnocgiofajneepaggdgpocbopfkenecp" target="_blank" rel="noopener">Get It Free</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="faq-hero">
+  <h1>Got <em>questions?</em></h1>
+  <p>Everything you'd reasonably want to know about CartChkr — install, scanning, the Move feature, pricing, privacy, and what to do when Coles plays up.</p>
+  <div class="faq-search-wrap">
+    <svg class="faq-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+    <input type="search" id="faq-search" placeholder="Search FAQs — try &quot;Coles not loading&quot; or &quot;refund&quot;" autocomplete="off" />
+  </div>
+</section>
+
+<!-- CATEGORY JUMP-NAV -->
+<div class="faq-jump">
+  <div class="faq-jump-inner">
+    <a href="#getting-started">Getting started</a>
+    <a href="#using-it">Using it</a>
+    <a href="#pricing-accounts">Pricing &amp; accounts</a>
+    <a href="#privacy-data">Privacy &amp; data</a>
+    <a href="#troubleshooting">Troubleshooting</a>
+  </div>
+</div>
+
+<!-- FAQ BODY -->
+<main class="faq-body">
+
+  <!-- ─────────────────── GETTING STARTED ─────────────────── -->
+  <section class="faq-category" id="getting-started">
+    <div class="faq-category-label">Getting started</div>
+    <h2>The basics</h2>
+
+    <article class="faq-q" id="what-is-cartchkr">
+      <h3>What is CartChkr? <a class="anchor-link" href="#what-is-cartchkr" aria-label="Permalink">#</a></h3>
+      <div class="a">
+        <p>CartChkr is a free Chrome extension for Australian grocery shoppers. You load up your trolley at <strong>Woolies or Coles</strong> as normal, click the CartChkr button, and it compares every item against the same product at the other store. Anything cheaper at the other store gets a one-click Move button that switches the item across for you.</p>
+        <p>It works in both directions — start at Woolies and compare to Coles, or start at Coles and compare to Woolies.</p>
+      </div>
+    </article>
+
+    <article class="faq-q" id="which-browsers">
+      <h3>Which browsers does it work on? <a class="anchor-link" href="#which-browsers" aria-label="Permalink">#</a></h3>
+      <div class="a">
+        <p>Chrome and any Chromium-based browser — <strong>Microsoft Edge, Brave, Arc, Opera, Vivaldi</strong>. If you can install extensions from the Chrome Web Store, CartChkr works.</p>
+        <p>It does <strong>not</strong> work on Safari, Firefox, or mobile browsers (Chrome for iOS/Android don't support extensions). Firefox is on the roadmap; Safari and mobile are further out.</p>
+      </div>
+    </article>
+
+    <article class="faq-q" id="do-i-need-an-account">
+      <h3>Do I need to sign up for a CartChkr account? <a class="anchor-link" href="#do-i-need-an-account" aria-label="Permalink">#</a></h3>
+      <div class="a">
+        <p>No account, no email signup. CartChkr uses your existing Woolworths and Coles logins — it reads the prices your browser already has access to and never asks for your credentials.</p>
+      </div>
+    </article>
+
+    <article class="faq-q" id="how-do-i-install">
+      <h3>How do I install it? <a class="anchor-link" href="#how-do-i-install" aria-label="Permalink">#</a></h3>
+      <div class="a">
+        <p>Open the <a href="https://chromewebstore.google.com/detail/cartchkr/dnocgiofajneepaggdgpocbopfkenecp" target="_blank" rel="noopener">CartChkr Chrome Web Store page</a> and click <strong>Add to Chrome</strong>. After installing, pin CartChkr to your toolbar (click the puzzle-piece icon, then the pin next to CartChkr) so it's easy to find. Open Woolies or Coles, click the CartChkr icon, and the sidepanel will appear.</p>
+      </div>
+    </article>
+
+    <article class="faq-q" id="what-permissions-does-it-need">
+      <h3>Why does it ask to "read data on woolworths.com.au and coles.com.au"? <a class="anchor-link" href="#what-permissions-does-it-need" aria-label="Permalink">#</a></h3>
+      <div class="a">
+        <p>To compare prices, CartChkr needs to read your trolley contents and look up the matching items at the other store. That's all the permission is for. It can't see anything on any other site, it never reads your passwords or payment details, and it doesn't send your cart anywhere — see <a href="#what-data-do-you-collect">the privacy section</a>.</p>
+      </div>
+    </article>
+  </section>
+
+  <!-- ─────────────────── USING IT ─────────────────── -->
+  <section class="faq-category" id="using-it">
+    <div class="faq-category-label">Using it</div>
+    <h2>Scanning, matching, moving</h2>
+
+    <article class="faq-q" id="how-do-i-scan">
+      <h3>How do I scan my cart? <a class="anchor-link" href="#how-do-i-scan" aria-label="Permalink">#</a></h3>
+      <div class="a">
+        <p>Sign into both stores in separate tabs and load up your trolley at one of them. Open the CartChkr sidepanel, then click the <strong>W (Scan)</strong> button if your trolley is at Woolies, or the <strong>C (Scan)</strong> button if it's at Coles. CartChkr fetches every item, finds the matching product at the other store, and shows you a side-by-side comparison.</p>
+        <p>Typical scan takes 5-15 seconds depending on cart size. You'll see a progress bar.</p>
+      </div>
+    </article>
+
+    <article class="faq-q" id="why-no-match">
+      <h3>Why are some items marked "no match"? <a class="anchor-link" href="#why-no-match" aria-label="Permalink">#</a></h3>
+      <div class="a">
+        <p>Three common reasons:</p>
+        <ul>
+          <li><strong>Private label products</strong> — Woolworths own-brand items (Macro, Essentials, etc.) usually don't have an exact Coles equivalent, and the same the other way around.</li>
+          <li><strong>Fresh produce PLU codes</strong> — Woolies and Coles use different internal codes for things like loose capsicums or bananas, so an exact-code search returns nothing. CartChkr tries a name-based fallback for these but it doesn't always find a confident match.</li>
+          <li><strong>Genuinely store-exclusive items</strong> — some lines are only stocked at one chain.</li>
+        </ul>
+        <p>If you spot a "no match" that you think IS available, click the 👎 on the match — we use those signals to improve scoring.</p>
+      </div>
+    </article>
+
+    <article class="faq-q" id="how-does-move-work">
+      <h3>How does the Move button actually work? <a class="anchor-link" href="#how-does-move-work" aria-label="Permalink">#</a></h3>
+      <div class="a">
+        <p>Click Move and CartChkr adds the matching product to your trolley at the cheaper store, then removes the item from your original cart. If anything fails partway through, it rolls back automatically so you don't end up with an item missing or duplicated.</p>
+        <p>Everything happens inside your own browser session using your existing logins — no separate checkout, no payment to us beyond the one-time licence.</p>
+      </div>
+    </article>
+
+    <article class="faq-q" id="can-i-undo-a-move">
+      <h3>Can I undo a Move? <a class="anchor-link" href="#can-i-undo-a-move" aria-label="Permalink">#</a></h3>
+      <div class="a">
+        <p>If a Move fails for any reason, CartChkr rolls it back automatically — the item goes back to its original cart. For a successful Move you've changed your mind about: just remove the item from the new cart and re-add it at the original store. We'd love to add a one-click undo down the track but it's not in v1.</p>
+      </div>
+    </article>
+
+    <article class="faq-q" id="aldi-iga-costco">
+      <h3>Can CartChkr compare ALDI, IGA, or Costco too? <a class="anchor-link" href="#aldi-iga-costco" aria-label="Permalink">#</a></h3>
+      <div class="a">
+        <p>Not yet. CartChkr currently compares <strong>Woolworths and Coles</strong> — the two stores with comparable online trolley experiences. ALDI doesn't offer the same online cart functionality, and IGA / Costco vary store by store. We're aiming at New Zealand next (Pak'nSave + Woolworths NZ), then revisiting AU options.</p>
+      </div>
+    </article>
+
+    <article class="faq-q" id="mobile-support">
+      <h3>Does this work on mobile or iPad? <a class="anchor-link" href="#mobile-support" aria-label="Permalink">#</a></h3>
+      <div class="a">
+        <p>No — CartChkr is a Chrome desktop extension. Chrome on iOS and Android doesn't support extensions, and Safari is a separate platform. Mobile support is on the long-term roadmap.</p>
+      </div>
+    </article>
+
+    <article class="faq-q" id="everyday-rewards">
+      <h3>Does CartChkr work with Everyday Rewards / Flybuys pricing? <a class="anchor-link" href="#everyday-rewards" aria-label="Permalink">#</a></h3>
+      <div class="a">
+        <p>Yes. As long as you're signed in at Woolworths with your Everyday Rewards account (and Coles with your Flybuys account), CartChkr sees the prices you actually pay — member specials and reward pricing are baked into the comparison.</p>
+      </div>
+    </article>
+  </section>
+
+  <!-- ─────────────────── PRICING & ACCOUNTS ─────────────────── -->
+  <section class="faq-category" id="pricing-accounts">
+    <div class="faq-category-label">Pricing &amp; accounts</div>
+    <h2>What it costs, how to manage it</h2>
+
+    <article class="faq-q" id="is-it-free">
+      <h3>Is CartChkr free? <a class="anchor-link" href="#is-it-free" aria-label="Permalink">#</a></h3>
+      <div class="a">
+        <p><strong>Scanning is free, forever.</strong> Add items to your Woolies or Coles cart, hit Scan, see the comparison — no payment.</p>
+        <p>The <strong>Move</strong> feature (one-click switch to the cheaper store) requires a one-time licence:</p>
+        <ul>
+          <li><strong>Founding Member</strong> — 99¢ one-time, first 500 users only</li>
+          <li><strong>Lifetime</strong> — $3.99 one-time, full access forever</li>
+          <li><strong>Monthly</strong> — $2.99/month, full access plus early access to new stores</li>
+        </ul>
+        <p>Most users save $15-$25 per shop, so the licence pays for itself the first time you use it.</p>
+      </div>
+    </article>
+
+    <article class="faq-q" id="how-do-i-upgrade">
+      <h3>How do I upgrade to unlock Move? <a class="anchor-link" href="#how-do-i-upgrade" aria-label="Permalink">#</a></h3>
+      <div class="a">
+        <p>Click any Move button in the sidepanel. You'll see a plan picker — choose Founding, Lifetime, or Monthly — and complete checkout through ExtensionPay (which handles billing via Stripe). Your plan activates the moment payment succeeds.</p>
+      </div>
+    </article>
+
+    <article class="faq-q" id="can-i-get-refund">
+      <h3>Can I get a refund? <a class="anchor-link" href="#can-i-get-refund" aria-label="Permalink">#</a></h3>
+      <div class="a">
+        <p>Yes — email <a href="mailto:support@cartchkr.com.au">support@cartchkr.com.au</a> within 14 days of payment and we'll refund you, no questions asked. Refunds process through Stripe and usually land in your account within 5-10 business days.</p>
+      </div>
+    </article>
+
+    <article class="faq-q" id="lost-licence-after-clearing-data">
+      <h3>I cleared my browser data — did I lose my licence? <a class="anchor-link" href="#lost-licence-after-clearing-data" aria-label="Permalink">#</a></h3>
+      <div class="a">
+        <p>No. Your plan is tied to your ExtensionPay account, not your browser. Open CartChkr → click the ⚙ icon → <strong>Sign in / restore purchase</strong>. Use the same email you bought with and your plan will be restored.</p>
+      </div>
+    </article>
+
+    <article class="faq-q" id="how-do-i-cancel">
+      <h3>How do I cancel my monthly subscription? <a class="anchor-link" href="#how-do-i-cancel" aria-label="Permalink">#</a></h3>
+      <div class="a">
+        <p>Open CartChkr → click the ⚙ icon → <strong>Manage subscription</strong>. This opens your ExtensionPay billing portal where you can cancel anytime. Your access continues until the end of the current billing period.</p>
+        <p>If you have trouble, email <a href="mailto:support@cartchkr.com.au">support@cartchkr.com.au</a> and we'll sort it out.</p>
+      </div>
+    </article>
+
+    <article class="faq-q" id="paid-but-move-still-locked">
+      <h3>I paid but the Move feature is still locked — what do I do? <a class="anchor-link" href="#paid-but-move-still-locked" aria-label="Permalink">#</a></h3>
+      <div class="a">
+        <p>Close the CartChkr sidepanel completely (click the toolbar icon to dismiss), then reopen it. The licence check runs fresh on every open and should activate immediately.</p>
+        <p>If it's still locked after reopening, email <a href="mailto:support@cartchkr.com.au">support@cartchkr.com.au</a> with your payment confirmation email and we'll manually verify and activate your account.</p>
+      </div>
+    </article>
+  </section>
+
+  <!-- ─────────────────── PRIVACY & DATA ─────────────────── -->
+  <section class="faq-category" id="privacy-data">
+    <div class="faq-category-label">Privacy &amp; data</div>
+    <h2>What we see and don't see</h2>
+
+    <article class="faq-q" id="what-data-do-you-collect">
+      <h3>What data does CartChkr collect? <a class="anchor-link" href="#what-data-do-you-collect" aria-label="Permalink">#</a></h3>
+      <div class="a">
+        <p><strong>Your cart contents stay in your browser.</strong> CartChkr does not send your shopping data to any server we control. It doesn't store what you buy, when you shop, or what your trolley looks like.</p>
+        <p>The only external service it touches is <a href="https://extensionpay.com" target="_blank" rel="noopener">ExtensionPay</a> (via Stripe) for licence verification, if you've bought a plan. ExtensionPay sees your email and payment status — nothing about your shopping. See our <a href="/privacy.html">Privacy Policy</a> for the full breakdown.</p>
+      </div>
+    </article>
+
+    <article class="faq-q" id="do-you-see-login-details">
+      <h3>Do you see my Woolies or Coles login details? <a class="anchor-link" href="#do-you-see-login-details" aria-label="Permalink">#</a></h3>
+      <div class="a">
+        <p>No. CartChkr never reads, stores, or transmits your passwords or auth tokens. It uses the active session your browser already has with each store — exactly the same session you use to shop normally.</p>
+      </div>
+    </article>
+
+    <article class="faq-q" id="gdpr-and-opt-out">
+      <h3>What about GDPR / opt-out / deleting my data? <a class="anchor-link" href="#gdpr-and-opt-out" aria-label="Permalink">#</a></h3>
+      <div class="a">
+        <p>There's no telemetry to opt out of — we don't collect any. If you've bought a plan and want your ExtensionPay account data deleted, email <a href="mailto:support@cartchkr.com.au">support@cartchkr.com.au</a> and we'll process the deletion through ExtensionPay's customer-data flow within 30 days.</p>
+      </div>
+    </article>
+
+    <article class="faq-q" id="affiliated-with-woolies-coles">
+      <h3>Is CartChkr affiliated with Woolworths or Coles? <a class="anchor-link" href="#affiliated-with-woolies-coles" aria-label="Permalink">#</a></h3>
+      <div class="a">
+        <p>No. CartChkr is an independent tool built by an Australian developer. It's not affiliated with, endorsed by, or sponsored by Woolworths Group Limited or Coles Group Limited. We just shop there like everyone else and got tired of comparing prices by hand.</p>
+      </div>
+    </article>
+  </section>
+
+  <!-- ─────────────────── TROUBLESHOOTING ─────────────────── -->
+  <section class="faq-category" id="troubleshooting">
+    <div class="faq-category-label">Troubleshooting</div>
+    <h2>When something's not working</h2>
+
+    <article class="faq-q" id="why-doesnt-coles-load">
+      <h3>Why doesn't Coles load? / Coles tab keeps showing a loading screen <a class="anchor-link" href="#why-doesnt-coles-load" aria-label="Permalink">#</a></h3>
+      <div class="a">
+        <p>You've hit Coles' bot-detection (Imperva). It's not CartChkr being blocked specifically — Coles runs a security check that occasionally challenges automated traffic, including the kind of programmatic browsing the extension does. Fix:</p>
+        <ol>
+          <li>Switch to your Coles tab in Chrome.</li>
+          <li>Wait 5-10 seconds for the loading screen to finish — Imperva runs a JavaScript challenge and sets a cookie.</li>
+          <li>Come back to the CartChkr sidepanel and hit Scan again.</li>
+        </ol>
+        <p>If it keeps happening every shop: sign out and back in at <a href="https://www.coles.com.au" target="_blank" rel="noopener">coles.com.au</a> — that usually clears any stuck session state. We're working on a fully automated workaround but for now this manual nudge is the most reliable fix.</p>
+      </div>
+    </article>
+
+    <article class="faq-q" id="my-woolies-session-expired">
+      <h3>My Woolies session expired / "Please sign in" loop <a class="anchor-link" href="#my-woolies-session-expired" aria-label="Permalink">#</a></h3>
+      <div class="a">
+        <p>Woolworths sessions last about 24 hours. If yours has expired, sign back in at <a href="https://www.woolworths.com.au" target="_blank" rel="noopener">woolworths.com.au</a>, then retry the scan. CartChkr will pick up the fresh session automatically.</p>
+      </div>
+    </article>
+
+    <article class="faq-q" id="wrong-matches">
+      <h3>The extension found the wrong match for one of my items <a class="anchor-link" href="#wrong-matches" aria-label="Permalink">#</a></h3>
+      <div class="a">
+        <p>Click the 👎 next to the bad match in the sidepanel. CartChkr will block that pairing for future scans and we use those signals to improve the matcher. You can also click 👍 on a correct match to lock it in — saved matches persist across scans.</p>
+        <p>Common causes of bad matches: branded vs unbranded confusion (e.g. Cadbury vs Coles-brand chocolate), size variants (250g vs 500g), and fresh produce naming differences. We enforce brand-match for third-party brands but the fresh-produce side is still imperfect.</p>
+      </div>
+    </article>
+
+    <article class="faq-q" id="move-didnt-work">
+      <h3>I clicked Move but nothing happened / item didn't appear in the new cart <a class="anchor-link" href="#move-didnt-work" aria-label="Permalink">#</a></h3>
+      <div class="a">
+        <p>Most often this is the same Coles bot-block issue — the Move couldn't complete because Coles was rate-limiting. <a href="#why-doesnt-coles-load">Follow the steps in the Coles loading question</a>, then click Move again.</p>
+        <p>If it's not bot-block: CartChkr has a name-based fallback for fresh produce that sometimes needs a second pass. Clicking Move a second time will often succeed.</p>
+        <p>If it still fails after two tries, click <strong>Report Issue</strong> in the sidepanel footer — diagnostic logs are attached automatically and we'll investigate.</p>
+      </div>
+    </article>
+
+    <article class="faq-q" id="no-matches-found-on-every-item">
+      <h3>I see "No matches found" on every item <a class="anchor-link" href="#no-matches-found-on-every-item" aria-label="Permalink">#</a></h3>
+      <div class="a">
+        <p>If literally every item shows no match, the target store is bot-blocking your whole session. Manually visit <a href="https://www.coles.com.au" target="_blank" rel="noopener">coles.com.au</a> or <a href="https://www.woolworths.com.au" target="_blank" rel="noopener">woolworths.com.au</a>, complete any "Verify you're human" check that appears, then come back and re-scan.</p>
+      </div>
+    </article>
+
+    <article class="faq-q" id="report-bug">
+      <h3>How do I report a bug? <a class="anchor-link" href="#report-bug" aria-label="Permalink">#</a></h3>
+      <div class="a">
+        <p>Use the <strong>Report Issue</strong> button in the CartChkr sidepanel footer. You'll get three options: open Gmail in browser, open your default mail app, or copy the diagnostic logs to clipboard. Whichever you pick, the logs (cart state, last few errors, extension version) are attached automatically — you don't need to write anything technical, just describe what you were trying to do.</p>
+      </div>
+    </article>
+
+    <article class="faq-q" id="saved-rejected-matches">
+      <h3>Where can I see my saved or rejected matches? <a class="anchor-link" href="#saved-rejected-matches" aria-label="Permalink">#</a></h3>
+      <div class="a">
+        <p>Open the CartChkr sidepanel → click the <strong>Saved</strong> tab at the top. You'll see every match you've thumbs-upped (saved) and thumbs-downed (rejected). From there you can unpin a saved match or unblock a rejected one.</p>
+      </div>
+    </article>
+
+    <article class="faq-q" id="prices-keep-changing">
+      <h3>Why does the same item sometimes cost more at Woolies one week and less the next? <a class="anchor-link" href="#prices-keep-changing" aria-label="Permalink">#</a></h3>
+      <div class="a">
+        <p>Woolies and Coles run weekly specials that rotate constantly — hundreds of items change price every week depending on supplier deals, promotional calendars, and competitive pricing. There's no consistent pattern; the cheaper store genuinely changes week to week for most households.</p>
+        <p>That's exactly why CartChkr exists. Checking by hand takes 20+ minutes. CartChkr does it in 10 seconds.</p>
+      </div>
+    </article>
+  </section>
+
+  <div class="no-results" id="faq-no-results">
+    <p>No FAQs match that search. Try a different word, or just email us at <a href="mailto:support@cartchkr.com.au">support@cartchkr.com.au</a> — a human reads everything.</p>
+  </div>
+
+</main>
+
+<!-- STILL STUCK -->
+<section class="still-stuck">
+  <h2>Still stuck?</h2>
+  <p>Email us and a human will reply within 24 hours.</p>
+  <a class="btn-primary" href="mailto:support@cartchkr.com.au">support@cartchkr.com.au</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div style="font-size:18px;font-weight:800;"><span style="display:inline-flex"><span style="color:#B91C1C;">Cart</span><span style="color:#1a8c37;">Chkr</span></span></div>
+    <div class="footer-links">
+      <a href="/#how-it-works">How it works</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="/faq">FAQ</a>
+      <a href="mailto:support@cartchkr.com.au">support@cartchkr.com.au</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/terms.html">Terms</a>
+    </div>
+    <p>© 2026 CartChkr · cartchkr.com.au · Made in Australia 🇦🇺</p>
+    <div class="footer-legal">
+      CartChkr is an independent browser extension. It is not affiliated with, endorsed by, or sponsored by Woolworths Group Limited or Coles Group Limited. All store names, logos, and trademarks are the property of their respective owners. CartChkr operates solely within your authenticated browser session and does not collect, store, or transmit your personal data, cart contents, or payment information.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── Client-side search filter ───────────────────────────────────────────
+  (function() {
+    const input = document.getElementById('faq-search');
+    const noResults = document.getElementById('faq-no-results');
+    const allQs = Array.from(document.querySelectorAll('.faq-q'));
+    const allCats = Array.from(document.querySelectorAll('.faq-category'));
+
+    function applyFilter() {
+      const q = input.value.trim().toLowerCase();
+      if (!q) {
+        allQs.forEach(el => el.hidden = false);
+        allCats.forEach(el => el.hidden = false);
+        noResults.classList.remove('show');
+        return;
+      }
+      let any = false;
+      allQs.forEach(el => {
+        const text = el.textContent.toLowerCase();
+        const match = text.includes(q);
+        el.hidden = !match;
+        if (match) any = true;
+      });
+      // hide categories with no visible questions
+      allCats.forEach(cat => {
+        const visible = cat.querySelectorAll('.faq-q:not([hidden])').length;
+        cat.hidden = visible === 0;
+      });
+      noResults.classList.toggle('show', !any);
+    }
+    input.addEventListener('input', applyFilter);
+
+    // ── Smooth-scroll for anchor links + handle initial hash ──────────────
+    function scrollToHash() {
+      const hash = window.location.hash;
+      if (!hash) return;
+      const target = document.querySelector(hash);
+      if (target) {
+        setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60);
+      }
+    }
+    if (window.location.hash) scrollToHash();
+    window.addEventListener('hashchange', scrollToHash);
+  })();
+</script>
+</body>
+</html>
