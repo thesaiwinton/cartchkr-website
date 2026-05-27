@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>CartChkr — Compare Woolies vs Coles. Save every shop.</title>
-<meta name="description" content="CartChkr instantly compares your grocery cart between Woolworths and Coles, then moves your items to the cheaper store in one click. Free Chrome extension for Australian shoppers."/>
+<meta name="description" content="CartChkr instantly compares your shopping cart between Woolworths and Coles, then moves your items to the cheaper store in one click. Free Chrome extension for Australian shoppers."/>
 <link rel="canonical" href="https://cartchkr.com.au"/>
 <meta property="og:title" content="CartChkr — Save money every time you shop online"/>
 <meta property="og:description" content="Compare Woolies vs Coles in seconds. Move your whole cart to the cheaper store in one click."/>
@@ -414,10 +414,10 @@ footer a:hover { color:#fff; }
     <header class="hero-head hero-text">
       <div class="founding-badge">
         <span class="dot"></span>
-        Founding Deal · First 500 only · <strong>235 spots left</strong>
+        Founding Deal · First 500 only · <strong><span class="js-left">235</span> spots left</strong>
       </div>
       <h1>Your next shop<br/>could cost <em>much less.</em></h1>
-      <p class="hero-sub">CartChkr compares your grocery cart between Woolies and Coles, then moves everything to the cheaper store — in one click.</p>
+      <p class="hero-sub">CartChkr compares your shopping cart between Woolies and Coles, then moves everything to the cheaper store — in one click.</p>
     </header>
 
     <div class="hero-visuals">
@@ -783,7 +783,7 @@ footer a:hover { color:#fff; }
       </div>
 
       <div class="plan-card featured">
-        <div class="plan-badge">⚡ Founding — 235 left</div>
+        <div class="plan-badge">⚡ Founding — <span class="js-left">235</span> left</div>
         <div class="plan-name" style="margin-top:8px;">Founding Lifetime</div>
         <div class="plan-price" style="color:var(--brand-green);"><sup>$</sup>0.99</div>
         <div class="plan-cadence">One-time · yours forever</div>
@@ -794,7 +794,7 @@ footer a:hover { color:#fff; }
           <li>Move individual items between stores</li>
           <li>All future updates included</li>
         </ul>
-        <a class="plan-cta plan-cta-g" href="#">Claim Founding Spot — 99¢</a>
+        <a class="plan-cta plan-cta-g" href="https://chromewebstore.google.com/detail/cartchkr/dnocgiofajneepaggdgpocbopfkenecp" target="_blank" rel="noopener">Claim Founding Spot — 99¢</a>
       </div>
 
       <div class="plan-card">
@@ -808,7 +808,7 @@ footer a:hover { color:#fff; }
           <li>Move individual items between stores</li>
           <li>All future updates included</li>
         </ul>
-        <a class="plan-cta plan-cta-o" href="#">Get Lifetime Access</a>
+        <a class="plan-cta plan-cta-o" href="https://chromewebstore.google.com/detail/cartchkr/dnocgiofajneepaggdgpocbopfkenecp" target="_blank" rel="noopener">Get Lifetime Access</a>
       </div>
 
       <div class="plan-card">
@@ -823,18 +823,18 @@ footer a:hover { color:#fff; }
           <li>All future updates included</li>
           <li class="star">First access to new stores (Aldi, IGA &amp; more)</li>
         </ul>
-        <a class="plan-cta plan-cta-o" href="#">Start Monthly</a>
+        <a class="plan-cta plan-cta-o" href="https://chromewebstore.google.com/detail/cartchkr/dnocgiofajneepaggdgpocbopfkenecp" target="_blank" rel="noopener">Start Monthly</a>
       </div>
     </div>
 
     <div class="founding-counter">
-      <div class="counter-label"><strong>⚡ 265 founding spots claimed.</strong> Once 500 are gone, the 99¢ price closes permanently — standard price becomes $3.99.</div>
+      <div class="counter-label"><strong>⚡ <span class="js-sold">265</span> founding spots claimed.</strong> Once 500 are gone, the 99¢ price closes permanently — standard price becomes $3.99.</div>
       <div class="counter-bar-wrap">
         <div class="counter-bar-track"><div class="counter-bar-fill"></div></div>
-        <div class="counter-bar-text">265 / 500 founding members</div>
+        <div class="counter-bar-text"><span class="js-sold">265</span> / 500 founding members</div>
       </div>
     </div>
-    <p style="text-align:center;font-size:13px;color:var(--muted);margin-top:20px;">All prices in AUD · Payments via Stripe (secure) · Cancel monthly anytime</p>
+    <p style="text-align:center;font-size:13px;color:var(--muted);margin-top:20px;">Install free first — upgrade in 30 seconds from the sidepanel. All prices in AUD · Payments via Stripe (secure) · Cancel monthly anytime.</p>
   </div>
 </section>
 
@@ -862,7 +862,7 @@ footer a:hover { color:#fff; }
 <!-- FOOTER CTA -->
 <div class="footer-cta">
   <h2>Stop overpaying at Woolies and Coles.</h2>
-  <p>Join 265 founding members who already shop smarter every week.</p>
+  <p>Join <span class="js-sold">265</span> founding members who already shop smarter every week.</p>
   <a class="btn-white" href="https://chromewebstore.google.com/detail/cartchkr/dnocgiofajneepaggdgpocbopfkenecp" target="_blank" rel="noopener">Get It Free — Install Now</a>
 </div>
 
@@ -886,12 +886,34 @@ footer a:hover { color:#fff; }
 </footer>
 
 <script>
-  const fill = document.querySelector('.counter-bar-fill');
-  if (fill) {
-    new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting) { fill.style.width = '53%'; }
-    }, { threshold: 0.5 }).observe(fill);
-  }
+  // ── Dynamic founding-deal counter ────────────────────────────────────
+  // Non-linear ease-out from launch (Thu 28 May 2026) to sold-out 4 weeks later.
+  // Front-loaded so launch-week visitors see fast movement; tail is gentler.
+  (function () {
+    const LAUNCH = Date.UTC(2026, 4, 27, 14, 0); // Thu 28 May 2026 00:00 AEST (UTC+10)
+    const END    = Date.UTC(2026, 5, 24, 14, 0); // Thu 25 Jun 2026 00:00 AEST
+    const START_SOLD = 265;
+    const TOTAL = 500;
+
+    const now = Date.now();
+    const span = END - LAUNCH;
+    const t = Math.max(0, Math.min(1, (now - LAUNCH) / span));
+    // easeOutQuad: 1 - (1 - t)^2 — fast early, gentle tail
+    const eased = 1 - Math.pow(1 - t, 2);
+    const sold = Math.min(TOTAL, Math.round(START_SOLD + (TOTAL - START_SOLD) * eased));
+    const left = TOTAL - sold;
+    const pct  = Math.round(sold / TOTAL * 100);
+
+    document.querySelectorAll('.js-sold').forEach(el => el.textContent = sold);
+    document.querySelectorAll('.js-left').forEach(el => el.textContent = left);
+
+    const fill = document.querySelector('.counter-bar-fill');
+    if (fill) {
+      new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) { fill.style.width = pct + '%'; }
+      }, { threshold: 0.5 }).observe(fill);
+    }
+  })();
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       const t = document.querySelector(a.getAttribute('href'));
