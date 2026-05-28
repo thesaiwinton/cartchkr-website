@@ -194,6 +194,20 @@ footer a:hover { color:#fff; }
   .nav-link { display: none; }
 }
 </style>
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '845119155340465');
+fbq('track', 'PageView');
+fbq('track', 'ViewContent', { content_name: 'FAQ', content_category: 'support' });
+</script>
+<noscript><img height="1" width="1" style="display:none" alt=""
+src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel -->
 </head>
 <body>
 
@@ -597,5 +611,6 @@ footer a:hover { color:#fff; }
     window.addEventListener('hashchange', scrollToHash);
   })();
 </script>
+<script defer src="/pixel-events.js"></script>
 </body>
 </html>

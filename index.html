@@ -385,6 +385,19 @@ footer a:hover { color:#fff; }
 .footer-links { display:flex; gap:20px; flex-wrap:wrap; justify-content:center; }
 .footer-legal { font-size:11px; color:#4b5563; text-align:center; border-top:1px solid #1f2937; padding-top:12px; margin-top:4px; max-width:700px; line-height:1.6; }
 </style>
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '845119155340465');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" alt=""
+src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel -->
 </head>
 <body>
 
@@ -794,7 +807,7 @@ footer a:hover { color:#fff; }
           <li>Move individual items between stores</li>
           <li>All future updates included</li>
         </ul>
-        <a class="plan-cta plan-cta-g" href="https://chromewebstore.google.com/detail/cartchkr/dnocgiofajneepaggdgpocbopfkenecp" target="_blank" rel="noopener">Claim Founding Spot — 99¢</a>
+        <a class="plan-cta plan-cta-g" data-plan="founding" href="https://chromewebstore.google.com/detail/cartchkr/dnocgiofajneepaggdgpocbopfkenecp" target="_blank" rel="noopener">Claim Founding Spot — 99¢</a>
       </div>
 
       <div class="plan-card">
@@ -808,7 +821,7 @@ footer a:hover { color:#fff; }
           <li>Move individual items between stores</li>
           <li>All future updates included</li>
         </ul>
-        <a class="plan-cta plan-cta-o" href="https://chromewebstore.google.com/detail/cartchkr/dnocgiofajneepaggdgpocbopfkenecp" target="_blank" rel="noopener">Get Lifetime Access</a>
+        <a class="plan-cta plan-cta-o" data-plan="lifetime" href="https://chromewebstore.google.com/detail/cartchkr/dnocgiofajneepaggdgpocbopfkenecp" target="_blank" rel="noopener">Get Lifetime Access</a>
       </div>
 
       <div class="plan-card">
@@ -823,7 +836,7 @@ footer a:hover { color:#fff; }
           <li>All future updates included</li>
           <li class="star">First access to new stores (Aldi, IGA &amp; more)</li>
         </ul>
-        <a class="plan-cta plan-cta-o" href="https://chromewebstore.google.com/detail/cartchkr/dnocgiofajneepaggdgpocbopfkenecp" target="_blank" rel="noopener">Start Monthly</a>
+        <a class="plan-cta plan-cta-o" data-plan="monthly" href="https://chromewebstore.google.com/detail/cartchkr/dnocgiofajneepaggdgpocbopfkenecp" target="_blank" rel="noopener">Start Monthly</a>
       </div>
     </div>
 
@@ -921,5 +934,6 @@ footer a:hover { color:#fff; }
     });
   });
 </script>
+<script defer src="/pixel-events.js"></script>
 </body>
 </html>
