@@ -1,10 +1,25 @@
 [build]
   publish = "."
 
-# Pretty URL for /faq -> /faq.html
+# Pretty URLs (must precede the SPA fallback below)
 [[redirects]]
   from = "/faq"
   to = "/faq.html"
+  status = 200
+
+[[redirects]]
+  from = "/delete"
+  to = "/delete.html"
+  status = 200
+
+[[redirects]]
+  from = "/privacy"
+  to = "/privacy.html"
+  status = 200
+
+[[redirects]]
+  from = "/terms"
+  to = "/terms.html"
   status = 200
 
 # SPA-style fallback for anything else
