@@ -126,7 +126,7 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
 <main>
   <div class="page-header">
     <h1>Privacy Policy</h1>
-    <p class="meta">Last updated: May 2026 &nbsp;·&nbsp; Effective immediately</p>
+    <p class="meta">Last updated: July 2026 &nbsp;·&nbsp; Effective immediately</p>
   </div>
 
   <div class="tldr">
@@ -135,7 +135,7 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
       <li>CartChkr runs entirely in your browser — no data is sent to our servers.</li>
       <li>We never see your cart contents, grocery lists, or shopping history.</li>
       <li>We never see your Woolworths or Coles passwords or payment details.</li>
-      <li>The only data we collect is what's strictly required for licensing (email address via ExtensionPay, only if you purchase).</li>
+      <li>The only data we collect is what's needed to manage a paid licence, and only if you purchase: on the Chrome extension, your email address via ExtensionPay; on the iOS and Android app, your purchase record and an anonymous app/device identifier via RevenueCat with the Apple App Store or Google Play.</li>
       <li>We don't sell, share, or monetise your data. Ever.</li>
     </ul>
   </div>
@@ -143,7 +143,7 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
   <article>
 
     <h2>1. Who we are</h2>
-    <p>CartChkr is an independent Chrome browser extension developed and operated in Australia. Our website is <a href="https://cartchkr.com.au">cartchkr.com.au</a>. You can contact us at <a href="mailto:support@cartchkr.com.au">support@cartchkr.com.au</a>.</p>
+    <p>CartChkr is an independent Chrome browser extension and iOS/Android app, developed and operated in Australia. Our website is <a href="https://cartchkr.com.au">cartchkr.com.au</a>. You can contact us at <a href="mailto:support@cartchkr.com.au">support@cartchkr.com.au</a>.</p>
 
     <h2>2. What data CartChkr collects</h2>
     <p><strong>CartChkr collects almost nothing.</strong> Here is a complete list of what the extension accesses and why:</p>
@@ -151,8 +151,9 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
       <li><strong>Your Woolworths and Coles cart pages</strong> — the extension reads product names, quantities, and prices from your open browser tabs solely to perform the price comparison. This data is processed locally and is never transmitted anywhere.</li>
       <li><strong>Woolworths and Coles search APIs</strong> — the extension sends product search queries to the same APIs your browser would use when you shop on those sites. These requests are made using your existing authenticated session (your login) and are indistinguishable from normal browsing.</li>
       <li><strong>Email address (paid users only)</strong> — if you purchase a paid plan, your email address is stored by ExtensionPay (our licensing provider) and Stripe (our payment processor) to manage your licence. We do not store it ourselves.</li>
+      <li><strong>Purchase data (paid app users only)</strong> — on the iOS and Android app, in-app purchases are handled by RevenueCat (our licensing provider) together with the Apple App Store or Google Play. To manage your licence, RevenueCat records your purchase history and an anonymous app-user and device identifier. This identifier is not linked to your name or account, and is never used to track you or for advertising. RevenueCat's privacy policy is at <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener">revenuecat.com/privacy</a>.</li>
     </ul>
-    <p>We do <strong>not</strong> collect: browsing history, search history, cart contents beyond the current session comparison, personal information, device identifiers, location data, or any analytics or behavioural data.</p>
+    <p>Beyond the licensing data above, we do <strong>not</strong> collect: browsing history, search history, cart contents beyond the current on-screen comparison, your name or contacts, location data, or any analytics, advertising, or behavioural tracking data. Your cart scanning and price matching run entirely on your device. The identifiers used for licensing are anonymous and are never linked to your identity or used to track you.</p>
 
     <h2>3. How your data is used</h2>
     <p>The cart and price data the extension reads is used <strong>only</strong> to generate the comparison shown to you in the extension panel. It is processed entirely on your device (your browser) and is discarded when you close the extension. It is never stored, logged, or transmitted to CartChkr or any third party.</p>
@@ -162,7 +163,9 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
     <p>CartChkr uses the following third-party services:</p>
     <ul>
       <li><strong>ExtensionPay</strong> — licence management for paid users. Their privacy policy is at <a href="https://extensionpay.com/privacy" target="_blank" rel="noopener">extensionpay.com/privacy</a>.</li>
-      <li><strong>Stripe</strong> — payment processing for paid users. Their privacy policy is at <a href="https://stripe.com/au/privacy" target="_blank" rel="noopener">stripe.com/au/privacy</a>.</li>
+      <li><strong>Stripe</strong> — payment processing for paid extension users. Their privacy policy is at <a href="https://stripe.com/au/privacy" target="_blank" rel="noopener">stripe.com/au/privacy</a>.</li>
+      <li><strong>RevenueCat</strong> — manages in-app purchases and licences on the iOS and Android app. Records purchase history and an anonymous identifier, used only to grant your licence. Their privacy policy is at <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener">revenuecat.com/privacy</a>.</li>
+      <li><strong>Apple App Store / Google Play</strong> — process in-app payments on iOS and Android. Apple and Google handle your payment details; we never see them.</li>
       <li><strong>Netlify</strong> — hosts this website. Netlify may log standard web server access logs (IP address, request URL, timestamp). Their privacy policy is at <a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener">netlify.com/privacy</a>.</li>
     </ul>
     <p>CartChkr has no relationship with Woolworths Group Limited or Coles Group Limited. The extension interacts with their public-facing website APIs using your own authenticated session, in the same way your browser does when you shop normally.</p>
@@ -170,8 +173,8 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
     <h2>5. Data storage and retention</h2>
     <p>CartChkr stores the following data locally in your browser using Chrome's <code>storage.local</code> API:</p>
     <ul>
-      <li>Your licence status (paid/free) — a boolean flag, refreshed from ExtensionPay on extension start.</li>
-      <li>Debug logs (if debug mode is enabled) — stored only in your browser, cleared on each scan.</li>
+      <li>Your licence status (paid/free) — a flag refreshed from ExtensionPay (extension) or RevenueCat (app) on start.</li>
+      <li>Debug / diagnostic logs — generated only on your device (browser or app) and stored only there. They are never sent automatically; they are shared with us only if you choose to copy them into a support email.</li>
     </ul>
     <p>No data is stored on CartChkr's servers. We have no servers that receive user data.</p>
 
