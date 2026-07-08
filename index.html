@@ -360,7 +360,7 @@ section { padding: 72px 24px; }
 .counter-label strong { font-weight: 800; }
 .counter-bar-wrap { flex: 1; min-width: 160px; }
 .counter-bar-track { height: 8px; background: #fef08a; border-radius: 100px; overflow: hidden; }
-.counter-bar-fill { height: 100%; background: #eab308; border-radius: 100px; width: 47%; transition: width 1s ease; }
+.counter-bar-fill { height: 100%; background: #eab308; border-radius: 100px; width: 40%; transition: width 1s ease; }
 .counter-bar-text { font-size: 12px; color: #a16207; margin-top: 4px; font-weight: 600; }
 
 /* ── FAQ ── */
@@ -427,7 +427,7 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
     <header class="hero-head hero-text">
       <div class="founding-badge">
         <span class="dot"></span>
-        Founding Deal · First 500 only · <strong><span class="js-left">235</span> spots left</strong>
+        Founding Deal · First 500 only · <strong><span class="js-left">300</span> spots left</strong>
       </div>
       <h1>Your next shop<br/>could cost <em>much less.</em></h1>
       <p class="hero-sub">CartChkr compares your shopping cart between Woolies and Coles, then moves everything to the cheaper store — in one click.</p>
@@ -796,7 +796,7 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
       </div>
 
       <div class="plan-card featured">
-        <div class="plan-badge">⚡ Founding — <span class="js-left">235</span> left</div>
+        <div class="plan-badge">⚡ Founding — <span class="js-left">300</span> left</div>
         <div class="plan-name" style="margin-top:8px;">Founding Lifetime</div>
         <div class="plan-price" style="color:var(--brand-green);"><sup>$</sup>0.99</div>
         <div class="plan-cadence">One-time · yours forever</div>
@@ -844,10 +844,10 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
     </div>
 
     <div class="founding-counter">
-      <div class="counter-label"><strong>⚡ <span class="js-sold">265</span> founding spots claimed.</strong> Once 500 are gone, the 99¢ price closes permanently — standard price becomes $3.99.</div>
+      <div class="counter-label"><strong>⚡ <span class="js-sold">200</span> founding spots claimed.</strong> Once 500 are gone, the 99¢ price closes permanently — standard price becomes $3.99.</div>
       <div class="counter-bar-wrap">
         <div class="counter-bar-track"><div class="counter-bar-fill"></div></div>
-        <div class="counter-bar-text"><span class="js-sold">265</span> / 500 founding members</div>
+        <div class="counter-bar-text"><span class="js-sold">200</span> / 500 founding members</div>
       </div>
     </div>
     <p style="text-align:center;font-size:13px;color:var(--muted);margin-top:20px;">Install free first — upgrade in 30 seconds from the sidepanel. All prices in AUD · Payments via Stripe (secure).</p>
@@ -880,7 +880,7 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
 <!-- FOOTER CTA -->
 <div class="footer-cta">
   <h2>Stop overpaying at Woolies and Coles.</h2>
-  <p>Join <span class="js-sold">265</span> founding members who already shop smarter every week.</p>
+  <p>Join <span class="js-sold">200</span> founding members who already shop smarter every week.</p>
   <a class="btn-white" href="https://chromewebstore.google.com/detail/cartchkr/dnocgiofajneepaggdgpocbopfkenecp" target="_blank" rel="noopener">Get It Free — Install Now</a>
 </div>
 
@@ -905,12 +905,12 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
 
 <script>
   // ── Dynamic founding-deal counter ────────────────────────────────────
-  // Non-linear ease-out from launch (Thu 28 May 2026) to sold-out 4 weeks later.
-  // Front-loaded so launch-week visitors see fast movement; tail is gentler.
+  // Non-linear ease-out from the relaunch reset (9 Jul 2026) to ~1 month later.
+  // Front-loaded so relaunch-week visitors see movement; tail is gentler. Plenty left at reset.
   (function () {
-    const LAUNCH = Date.UTC(2026, 4, 27, 14, 0); // Thu 28 May 2026 00:00 AEST (UTC+10)
-    const END    = Date.UTC(2026, 5, 24, 14, 0); // Thu 25 Jun 2026 00:00 AEST
-    const START_SOLD = 265;
+    const LAUNCH = Date.UTC(2026, 6, 8, 14, 0);  // Thu 9 Jul 2026 00:00 AEST (relaunch reset)
+    const END    = Date.UTC(2026, 7, 9, 14, 0);  // Sun 10 Aug 2026 00:00 AEST (~1 month runway)
+    const START_SOLD = 200;
     const TOTAL = 500;
 
     const now = Date.now();
