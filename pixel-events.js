@@ -3,7 +3,9 @@
 // this file adds the user-interaction events (clicks + scroll depth).
 //
 // Events fired:
-//   Lead              - click on any "Install" CTA pointing at chromewebstore.google.com
+//   Lead              - click on any store CTA: chromewebstore.google.com (Chrome),
+//                       apps.apple.com (iOS App Store), or play.google.com (Android).
+//                       content_category distinguishes extension_install vs app_install.
 //   InitiateCheckout  - click on a paid plan CTA (data-plan="founding"|"lifetime"|"monthly").
 //                       Also still fires Lead so we keep a unified install-intent funnel.
 //   ViewContent       - only on faq.html (fired from the inline head snippet there).
@@ -48,6 +50,18 @@
       fire('Lead', {
         content_name: 'CWS Install Click',
         content_category: 'extension_install'
+      });
+    } else if (href.indexOf('apps.apple.com') !== -1) {
+      fire('Lead', {
+        content_name: 'App Store Click (iOS)',
+        content_category: 'app_install',
+        content_ids: ['ios']
+      });
+    } else if (href.indexOf('play.google.com') !== -1) {
+      fire('Lead', {
+        content_name: 'Google Play Click (Android)',
+        content_category: 'app_install',
+        content_ids: ['android']
       });
     }
   }, true);
