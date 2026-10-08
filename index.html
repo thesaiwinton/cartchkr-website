@@ -449,7 +449,7 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
     <header class="hero-head hero-text">
       <div class="founding-badge">
         <span class="dot"></span>
-        Founding Deal · First 500 only · <strong><span class="js-left">300</span> spots left</strong>
+        Founding Deal · 99¢ early-adopter price
       </div>
       <h1>Your next shop<br/>could cost <em>much less.</em></h1>
       <p class="hero-sub">CartChkr compares your shopping cart between Woolies and Coles, then moves everything to the cheaper store — in one tap.</p>
@@ -774,6 +774,13 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
             <p>Start from Woolies and compare to Coles, or the other way around — whichever suits you or saves you the most.</p>
           </div>
         </div>
+        <div class="demo-feature">
+          <div class="demo-icon" style="background:#fef9c3;">📈</div>
+          <div>
+            <h3>Good Buy check — is today's price actually good?</h3>
+            <p>CartChkr tracks each item's recent price history and tells you whether today's price is a genuine deal or just a sticker — "Good buy, lowest in 60 days" vs "usually cheaper." Stop falling for fake specials.</p>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -827,7 +834,7 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
       </div>
 
       <div class="plan-card featured">
-        <div class="plan-badge">⚡ Founding — <span class="js-left">300</span> left</div>
+        <div class="plan-badge">⚡ Founding — early-adopter price</div>
         <div class="plan-name" style="margin-top:8px;">Founding Lifetime</div>
         <div class="plan-price" style="color:var(--brand-green);"><sup>$</sup>0.99</div>
         <div class="plan-cadence">One-time · yours forever</div>
@@ -836,6 +843,7 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
           <li>Cheaper / same / more / no-match filters</li>
           <li>One-tap full cart transfer</li>
           <li>Move individual items between stores</li>
+          <li class="star">Price History &amp; Good Buy check on every item</li>
           <li>All future updates included</li>
         </ul>
         <a class="plan-cta plan-cta-g" data-plan="founding" href="#download">Claim Founding Spot — 99¢</a>
@@ -850,6 +858,7 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
           <li>Cheaper / same / more / no-match filters</li>
           <li>One-tap full cart transfer</li>
           <li>Move individual items between stores</li>
+          <li class="star">Price History &amp; Good Buy check on every item</li>
           <li>All future updates included</li>
         </ul>
         <a class="plan-cta plan-cta-o" data-plan="lifetime" href="#download">Get Lifetime Access</a>
@@ -875,11 +884,7 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
     </div>
 
     <div class="founding-counter">
-      <div class="counter-label"><strong>⚡ <span class="js-sold">200</span> founding spots claimed.</strong> Once 500 are gone, the 99¢ price closes permanently — standard price becomes $3.99.</div>
-      <div class="counter-bar-wrap">
-        <div class="counter-bar-track"><div class="counter-bar-fill"></div></div>
-        <div class="counter-bar-text"><span class="js-sold">200</span> / 500 founding members</div>
-      </div>
+      <div class="counter-label"><strong>⚡ Founding price: 99¢ for early adopters.</strong> When the founding period ends the price moves to $3.99 — and founding members keep full access forever, including every feature we add.</div>
     </div>
     <p style="text-align:center;font-size:13px;color:var(--muted);margin-top:20px;">Install free, then unlock Move from inside the app in seconds. All prices in AUD · in-app purchase (Apple / Google).</p>
   </div>
@@ -911,7 +916,7 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
 <!-- FOOTER CTA -->
 <div class="footer-cta" id="download">
   <h2>Stop overpaying at Woolies and Coles.</h2>
-  <p>Join <span class="js-sold">200</span> founding members who already shop smarter every week.</p>
+  <p>Join the founding members who already shop smarter every week.</p>
   <div class="final-cta">
       <div class="dl-badges">
         <a class="dl-badge" href="https://apps.apple.com/au/app/cartchkr/id6778817104" target="_blank" rel="noopener" aria-label="Download CartChkr on the App Store">
@@ -947,34 +952,9 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
 </footer>
 
 <script>
-  // ── Dynamic founding-deal counter ────────────────────────────────────
-  // Non-linear ease-out from the relaunch reset (9 Jul 2026) to ~1 month later.
-  // Front-loaded so relaunch-week visitors see movement; tail is gentler. Plenty left at reset.
-  (function () {
-    const LAUNCH = Date.UTC(2026, 6, 8, 14, 0);  // Thu 9 Jul 2026 00:00 AEST (relaunch reset)
-    const END    = Date.UTC(2026, 7, 9, 14, 0);  // Sun 10 Aug 2026 00:00 AEST (~1 month runway)
-    const START_SOLD = 200;
-    const TOTAL = 500;
-
-    const now = Date.now();
-    const span = END - LAUNCH;
-    const t = Math.max(0, Math.min(1, (now - LAUNCH) / span));
-    // easeOutQuad: 1 - (1 - t)^2 — fast early, gentle tail
-    const eased = 1 - Math.pow(1 - t, 2);
-    const sold = Math.min(TOTAL, Math.round(START_SOLD + (TOTAL - START_SOLD) * eased));
-    const left = TOTAL - sold;
-    const pct  = Math.round(sold / TOTAL * 100);
-
-    document.querySelectorAll('.js-sold').forEach(el => el.textContent = sold);
-    document.querySelectorAll('.js-left').forEach(el => el.textContent = left);
-
-    const fill = document.querySelector('.counter-bar-fill');
-    if (fill) {
-      new IntersectionObserver(entries => {
-        if (entries[0].isIntersecting) { fill.style.width = pct + '%'; }
-      }, { threshold: 0.5 }).observe(fill);
-    }
-  })();
+  // Founding-deal counter removed (Oct 2026): the old widget simulated a "spots claimed" number from a
+  // date curve rather than real sales. Replaced with an honest static statement in the founding-counter
+  // block, so nothing here fabricates a count.
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       const t = document.querySelector(a.getAttribute('href'));
