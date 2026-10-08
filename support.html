@@ -14,16 +14,16 @@
       --red-dk: #991b1b;
       --green:  #1a8c37;
       --green-lt: #dcfce7;
-      --dark:   #0f0f1e;
-      --body:   #1e1e2e;
-      --surface:#27273a;
-      --border: #3a3a52;
-      --muted:  #9090a8;
-      --text:   #e8e8f0;
-      --text-sm:#c0c0d0;
+      --dark:   #f8f9fa;
+      --body:   #ffffff;
+      --surface:#ffffff;
+      --border: #e5e7eb;
+      --muted:  #6b7280;
+      --text:   #1a1a1a;
+      --text-sm:#4b5563;
       --white:  #ffffff;
       --radius: 10px;
-      --shadow: 0 2px 12px rgba(0,0,0,0.35);
+      --shadow: 0 2px 12px rgba(0,0,0,0.08);
     }
 
     html { scroll-behavior: smooth; }
@@ -64,7 +64,7 @@
 
     /* ── Hero ── */
     .hero {
-      background: linear-gradient(135deg, var(--body) 0%, #1a1a2e 100%);
+      background: linear-gradient(135deg, #ffffff 0%, #eef2f7 100%);
       border-bottom: 1px solid var(--border);
       padding: 56px 24px 48px;
       text-align: center;
@@ -162,10 +162,10 @@
       font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 20px;
       white-space: nowrap;
     }
-    .cat-user { background: #1d4ed820; color: #60a5fa; border: 1px solid #1d4ed840; }
-    .cat-limitation { background: #92400e20; color: #fbbf24; border: 1px solid #92400e40; }
-    .cat-bug { background: #991b1b20; color: #f87171; border: 1px solid #991b1b40; }
-    .cat-intermittent { background: #5b21b620; color: #c084fc; border: 1px solid #5b21b640; }
+    .cat-user { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+    .cat-limitation { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+    .cat-bug { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+    .cat-intermittent { background: #ede9fe; color: #6d28d9; border: 1px solid #ddd6fe; }
 
     .kb-chevron { color: var(--muted); font-size: 12px; transition: transform 0.2s; flex-shrink: 0; }
     .kb-card.open .kb-chevron { transform: rotate(180deg); }
@@ -225,7 +225,7 @@
       border-radius: 20px; font-weight: 600;
     }
     .pill-free { background: var(--green-lt); color: var(--green); }
-    .pill-paid { background: #fef3c720; color: #fbbf24; border: 1px solid #92400e40; }
+    .pill-paid { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
 
     /* ── Release Notes ── */
     .releases { display: grid; gap: 24px; }
@@ -263,8 +263,8 @@
     }
     .release-items li .ri { flex-shrink: 0; font-size: 14px; }
     .ri-new { color: var(--green); }
-    .ri-fix { color: #60a5fa; }
-    .ri-improve { color: #fbbf24; }
+    .ri-fix { color: #2563eb; }
+    .ri-improve { color: #b45309; }
     .ri-internal { color: var(--muted); }
 
     /* ── Contact ── */
@@ -324,7 +324,7 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
   <div class="header-inner">
     <a class="logo" href="https://cartchkr.com.au">
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="28" height="28" rx="7" fill="#1e1e2e" stroke="#3a3a52" stroke-width="1"/>
+        <rect width="28" height="28" rx="7" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
         <path d="M2 9.5H5L5.5 11" stroke="#B91C1C" stroke-width="2" stroke-linecap="round"/>
         <path d="M5.5 11H22.5L21 21H7Z" fill="#B91C1C"/>
         <circle cx="9" cy="23.5" r="2.2" fill="#B91C1C"/>
@@ -619,8 +619,8 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
           How does CartChkr compare prices? <span class="faq-chevron">▼</span>
         </div>
         <div class="faq-a">
-          <p>CartChkr reads your cart directly from the Woolworths or Coles website using your logged-in session. It then searches for each item at the other store and compares the live prices — including any member specials, Everyday Rewards pricing, or Coles member discounts you're entitled to.</p>
-          <p>Everything runs locally in your browser. CartChkr never sends your cart contents, login details, or personal information anywhere.</p>
+          <p>CartChkr reads your cart directly from Woolworths or Coles using your logged-in session — in the phone app or the Chrome extension. It then searches for each item at the other store and compares the live prices — including any member specials, Everyday Rewards pricing, or Coles member discounts you're entitled to.</p>
+          <p>Everything runs locally on your device. CartChkr never sends your cart contents, login details, or personal information anywhere.</p>
         </div>
       </div>
 
@@ -638,8 +638,8 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
           Is my data private? Does CartChkr collect anything? <span class="faq-chevron">▼</span>
         </div>
         <div class="faq-a">
-          <p>CartChkr does not collect, store, or transmit your cart contents, passwords, payment details, or any personal information. Everything runs locally in your browser.</p>
-          <p>The only external service CartChkr contacts is <strong>ExtensionPay</strong> (via Stripe) to verify your licence status if you've purchased one. See our <a href="/privacy">Privacy Policy</a> for full details.</p>
+          <p>CartChkr does not collect, store, or transmit your cart contents, passwords, payment details, or any personal information. Everything runs locally on your device.</p>
+          <p>CartChkr contacts outside services only for billing (<strong>ExtensionPay</strong>/Stripe on the extension, or the App Store/Google Play on mobile) to verify a licence you've bought, and — if you open an item's Price History — to look up that product's barcode/store code (never your cart or any personal data). See our <a href="/privacy">Privacy Policy</a> for full details.</p>
         </div>
       </div>
 
