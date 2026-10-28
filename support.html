@@ -344,7 +344,7 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
 
 <!-- ── Version strip ── -->
 <div class="version-strip">
-  Current version: <strong>Chrome extension v0.3.29 · iPhone &amp; Android app v1.0</strong> — updated October 2026
+  Current version: <strong>iPhone &amp; Android app v1.0.106 · Chrome extension v0.3.29</strong> — updated October 2026
   <a href="#releases" onclick="switchTab('releases')">Release notes ↓</a>
 </div>
 
@@ -380,18 +380,19 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
           <div class="kb-card-header-left">
             <span class="kb-id">KB-001</span>
             <span class="kb-cat-badge cat-user">User-side</span>
-            <span class="kb-card-title">Extension shows nothing / blank panel</span>
+            <span class="kb-card-title">App opens to a blank or stuck screen</span>
           </div>
           <span class="kb-chevron">▼</span>
         </div>
         <div class="kb-card-body">
-          <p class="kb-symptoms">Side panel opens but is empty, or shows a spinner that never completes.</p>
+          <p class="kb-symptoms">The CartChkr tab is empty, a spinner never finishes, or results never appear.</p>
           <ol class="kb-steps">
-            <li>Close and reopen the CartChkr side panel — click the toolbar icon to close it, then click again to reopen.</li>
-            <li>If that doesn't help: reload your Woolies or Coles tab (<strong>Ctrl+R</strong> on PC / <strong>Cmd+R</strong> on Mac), then reopen the panel.</li>
-            <li>Still blank? Go to <code>chrome://extensions</code> → find CartChkr → click the circular refresh arrow to reload the extension.</li>
+            <li><strong>Just updated the app? Give it a minute.</strong> The first check after an update re-prices everything from scratch rather than trusting older answers. It's the most expensive thing CartChkr does, and it's a one-off.</li>
+            <li><strong>Fully close the app</strong> — swipe it away in the app switcher — then reopen it.</li>
+            <li>Still stuck? Tap <strong>Clear Cart</strong> and start again. That cancels anything still running.</li>
+            <li>If a blank screen survives a full close and reopen, send us a log: <strong>More → Report an issue</strong>.</li>
           </ol>
-          <div class="kb-note">This usually happens just after installing or updating CartChkr. Chrome needs a page reload before the extension can connect to it.</div>
+          <div class="kb-note">Longer lists have a slower stretch before the rows fill in, because items are priced one at a time. We're making that run several at once.<br><br><strong>Chrome extension:</strong> close the side panel (toolbar icon) and reopen it; then reload the store tab (Ctrl+R / Cmd+R); then <code>chrome://extensions</code> → CartChkr → refresh.</div>
         </div>
       </div>
 
@@ -406,13 +407,14 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
           <span class="kb-chevron">▼</span>
         </div>
         <div class="kb-card-body">
-          <p class="kb-symptoms">CartChkr shows a price that doesn't match what you see on the store website.</p>
+          <p class="kb-symptoms">A price in CartChkr doesn't match what you see on the store's own site or app.</p>
           <ol class="kb-steps">
-            <li>Check if the item is a <strong>multi-pack</strong> (e.g. 3-pack of yoghurt). CartChkr normalises to a per-unit price for a fair comparison — the price shown may be per-unit, not per-pack.</li>
-            <li>Reload your Woolies or Coles cart tab and scan again. Specials update weekly and there can be a brief lag.</li>
-            <li>If the price is still wrong, report it with: the <strong>item name</strong>, the price CartChkr shows, the actual price on the website, and your <strong>diagnostic logs</strong> (click "Report issue" at the bottom of the CartChkr sidepanel → "Copy logs to clipboard").</li>
+            <li><strong>Check which price you're comparing.</strong> CartChkr shows the pack price and the per-unit price (e.g. "$1.29 / 100g"). The per-unit figure is for comparing products of different sizes — it isn't what you'll be charged.</li>
+            <li><strong>Check you're signed in to the same store account</strong> in CartChkr and on the website. Member pricing is often below shelf price, so signed-in and signed-out give different answers — both correct.</li>
+            <li><strong>If the item is in your CartChkr Cart and you've updated the app since adding it</strong>, delete that line and add it again. Lines keep the answer they were given when added.</li>
+            <li>Still wrong? Email us the item name, what CartChkr showed, what the store showed, and which store — plus a log from <strong>More → Report an issue</strong>.</li>
           </ol>
-          <div class="kb-note">A known issue with Woolworths sale price data was fixed in v0.2.0. Update your extension if you're on an older version.</div>
+          <div class="kb-note">We rebuilt per-unit pricing in October. It now agrees with Woolworths' own published cup price 99.3% of the time across 5,738 products, up from 96.3%. If you see one out by a factor of ten, we definitely want to hear about it.</div>
         </div>
       </div>
 
@@ -427,13 +429,13 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
           <span class="kb-chevron">▼</span>
         </div>
         <div class="kb-card-body">
-          <p class="kb-symptoms">An item shows the "no match" badge even though you can find it at the other store manually.</p>
+          <p class="kb-symptoms">An item says "no match" even though you can find it at the other chain yourself.</p>
           <ol class="kb-steps">
-            <li>Click the <strong>Search</strong> link next to the "no match" item. This opens a pre-filled search on the other store so you can find it manually.</li>
-            <li>If you find the right product, click <strong>✓</strong> to pin that match — CartChkr will remember it for every future scan.</li>
-            <li>If the store was recently bot-blocked (you'll see a warning during the scan), wait 5–10 minutes and scan again.</li>
+            <li><strong>Tap "Wrong match?" on that item.</strong> You'll get the closest alternatives we found — and when there genuinely are none, the button becomes <strong>Search {store} store</strong> so you can look yourself.</li>
+            <li><strong>Pick the right product there and we remember it</strong> for every future check. One correction, fixed for good.</li>
+            <li><strong>If you typed the item, add a word or two.</strong> "chicken breast fillet 500g" works much better than "chicken breast" — see "Short, generic searches match badly" in the Knowledge Base for why.</li>
           </ol>
-          <div class="kb-note">Some products have very different names between stores (e.g. Woolworths Select vs Coles brand). CartChkr will improve matching over time — pinning correct matches helps.</div>
+          <div class="kb-note">Being straight with you: <strong>"no match" currently covers two different things</strong> and the wording doesn't tell them apart — either we couldn't find the product, or we found it but couldn't compare the sizes cleanly enough to put a dollar figure on it. We know, and we're fixing the wording.<br><br>If <em>every</em> item says no match rather than a few, that's a different problem — see the bot-detection article in the Knowledge Base.</div>
         </div>
       </div>
 
@@ -442,18 +444,19 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
         <div class="kb-card-header" onclick="toggleKb(this)">
           <div class="kb-card-header-left">
             <span class="kb-id">KB-004</span>
-            <span class="kb-cat-badge cat-user">User-side</span>
-            <span class="kb-card-title">Wrong product matched (different brand or size)</span>
+            <span class="kb-cat-badge cat-limitation">Known limitation</span>
+            <span class="kb-card-title">Wrong product matched</span>
           </div>
           <span class="kb-chevron">▼</span>
         </div>
         <div class="kb-card-body">
-          <p class="kb-symptoms">CartChkr matched your item to a different brand or wrong size at the other store.</p>
+          <p class="kb-symptoms">CartChkr matched your item to a different product, brand, flavour or size.</p>
           <ol class="kb-steps">
-            <li>Click the <strong>✕</strong> button on the item card to reject the wrong match. CartChkr will search for better alternatives.</li>
-            <li>If a better match appears in the results, click <strong>✓</strong> to pin it. CartChkr will remember this for every future scan.</li>
-            <li>If there's no good equivalent at the other store, the item will show as "no match" — which is the most accurate result.</li>
+            <li><strong>Tap "Wrong match?"</strong> and choose the right product. CartChkr saves the pairing and uses it on every future check.</li>
+            <li><strong>Thumbs-down blocks a bad pairing</strong> so it can't come back. Thumbs-up locks a good one in.</li>
+            <li>Everything you've saved or blocked is listed in <strong>More → Saved matches</strong>, with an undo on each.</li>
           </ol>
+          <div class="kb-note">Two places we're honestly still weak, so you know what to watch: <strong>short generic searches</strong> (our top priority — see "Short, generic searches match badly" in the Knowledge Base) and <strong>flavour variants</strong>, where asking for plain yoghurt can get you the strawberry one. Every correction you make goes into improving this, so they're worth the ten seconds.</div>
         </div>
       </div>
 
@@ -463,19 +466,18 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
           <div class="kb-card-header-left">
             <span class="kb-id">KB-005</span>
             <span class="kb-cat-badge cat-intermittent">Intermittent</span>
-            <span class="kb-card-title">Move button doesn't work / item not added</span>
+            <span class="kb-card-title">Move didn't work / item not added at the other store</span>
           </div>
           <span class="kb-chevron">▼</span>
         </div>
         <div class="kb-card-body">
-          <p class="kb-symptoms">Clicked Move (→C or →W), button spun, but item didn't appear in the other store's cart.</p>
+          <p class="kb-symptoms">You tapped Move or Move All, it looked like it ran, but the item isn't in the other cart.</p>
           <ol class="kb-steps">
-            <li>Make sure you're <strong>logged in to both Woolies and Coles</strong>. CartChkr needs an active session on both stores.</li>
-            <li>Have <strong>both store cart pages open in separate tabs</strong> before scanning.</li>
-            <li>If you see a bot-block warning: open the target store's website, browse normally for about 30 seconds (add something to cart, scroll through products), then try Move again.</li>
-            <li>Check that the item is actually in stock at the target store.</li>
+            <li><strong>Check you're signed in at the destination store.</strong> Open the <strong>Woolies</strong> or <strong>Coles</strong> tab in CartChkr — moving needs a live session at both ends, not just the one you scanned.</li>
+            <li><strong>Clear any bot check.</strong> Easily the commonest cause — stay on that store tab for 5–10 seconds, complete any "verify you're human" step, then come back and try again.</li>
+            <li><strong>It may have sold out</strong> between the check and the Move. Tap <strong>Wrong match?</strong> and pick something else.</li>
           </ol>
-          <div class="kb-note">The Move feature requires a paid licence. If you're seeing the upgrade prompt, scan is free — Move is the paid feature.</div>
+          <div class="kb-note">A failed Move rolls itself back automatically, so nothing is ever lost or duplicated. If it fails twice, send a log (<strong>More → Report an issue</strong>) with the item name and which direction you were moving.</div>
         </div>
       </div>
 
@@ -485,20 +487,18 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
           <div class="kb-card-header-left">
             <span class="kb-id">KB-006</span>
             <span class="kb-cat-badge cat-intermittent">Intermittent</span>
-            <span class="kb-card-title">Scan failed or returned no results</span>
+            <span class="kb-card-title">A check failed, errored, or returned nothing</span>
           </div>
           <span class="kb-chevron">▼</span>
         </div>
         <div class="kb-card-body">
-          <p class="kb-symptoms">Scan starts but stops partway, shows an error, or completes with 0 results.</p>
+          <p class="kb-symptoms">A check starts and stops, shows an error, or finishes with no results at all.</p>
           <ol class="kb-steps">
-            <li>Make sure you're on the <strong>cart/trolley page</strong>, not the home page or a product page.
-              <br>• Woolies cart: <a href="https://woolworths.com.au/cart" target="_blank">woolworths.com.au/cart</a>
-              <br>• Coles trolley: <a href="https://coles.com.au/trolley" target="_blank">coles.com.au/trolley</a>
-            </li>
-            <li>Confirm you're <strong>logged in</strong> to the store you're scanning and have at least 1 item in your cart.</li>
-            <li>If it's a bot-block (you'll see a warning in the panel): wait 5–10 minutes, reload the store page, and scan again.</li>
+            <li><strong>Scanning a live store cart?</strong> Open the <strong>Woolies</strong> or <strong>Coles</strong> tab, check the tile says "Signed in", and make sure there's at least one item in that store's cart.</li>
+            <li><strong>If everything is unmatched rather than some things</strong>, the other store is unreachable, not broken matching — see the bot-detection article in the Knowledge Base, or KB-012 if you're overseas or on a VPN.</li>
+            <li><strong>Skip sign-in entirely.</strong> A <strong>Quick Price Check</strong> — photo, receipt, typed or dictated list — uses live prices and needs no store session at all.</li>
           </ol>
+          <div class="kb-note">Occasionally a chain takes its own site down for maintenance. From inside CartChkr that looks identical to "nothing matched", which is on us to make clearer.</div>
         </div>
       </div>
 
@@ -508,18 +508,18 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
           <div class="kb-card-header-left">
             <span class="kb-id">KB-007</span>
             <span class="kb-cat-badge cat-user">User-side</span>
-            <span class="kb-card-title">Can't find CartChkr after installing</span>
+            <span class="kb-card-title">Where do I start? Can't find a feature</span>
           </div>
           <span class="kb-chevron">▼</span>
         </div>
         <div class="kb-card-body">
-          <p class="kb-symptoms">CartChkr is installed but you can't see it in Chrome's toolbar.</p>
+          <p class="kb-symptoms">Installed CartChkr but not sure what to do, or can't find something.</p>
           <ol class="kb-steps">
-            <li>Click the <strong>puzzle piece icon 🧩</strong> in Chrome's toolbar (top right).</li>
-            <li>Find CartChkr in the list and click the <strong>pin icon</strong> to keep it visible.</li>
-            <li>Navigate to a Woolies or Coles page, then click the CartChkr icon. The side panel will open on the right side of your browser.</li>
+            <li><strong>CartChkr tab</strong> — where everything happens. <strong>Quick Price Check</strong> at the top (<em>Scan a Photo</em>, <em>Type it or Say it</em>), and below it <em>Check your live Woolies or Coles carts</em>.</li>
+            <li><strong>Woolies</strong> and <strong>Coles</strong> tabs — where you sign in, and where your real carts live.</li>
+            <li><strong>More</strong> — Saved matches, Restore a purchase, Demo Mode, Report an issue.</li>
           </ol>
-          <div class="kb-note">CartChkr only activates on woolworths.com.au and coles.com.au pages. The icon may appear greyed out on other sites — this is normal.</div>
+          <div class="kb-note">Want a look before signing in to anything? <strong>More → Demo Mode</strong> walks the whole flow on a sample 32-item cart with no login and no store connection.<br><br><strong>Chrome extension:</strong> click the puzzle-piece icon in Chrome's toolbar, pin CartChkr, open Woolies or Coles, then click the CartChkr icon — the side panel opens on the right.</div>
         </div>
       </div>
 
@@ -528,18 +528,18 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
         <div class="kb-card-header" onclick="toggleKb(this)">
           <div class="kb-card-header-left">
             <span class="kb-id">KB-008</span>
-            <span class="kb-cat-badge cat-user">Expected behaviour</span>
-            <span class="kb-card-title">Prices changed after logging in with Everyday Rewards</span>
+            <span class="kb-cat-badge cat-user">Working as intended</span>
+            <span class="kb-card-title">Prices changed after signing in with Everyday Rewards / Flybuys</span>
           </div>
           <span class="kb-chevron">▼</span>
         </div>
         <div class="kb-card-body">
-          <p class="kb-symptoms">Prices look different after logging in with an Everyday Rewards account.</p>
+          <p class="kb-symptoms">Prices differ from before you signed in — or from what someone else sees for the same product.</p>
           <ol class="kb-steps">
-            <li>This is <strong>correct behaviour</strong>. CartChkr uses your actual logged-in prices, including Everyday Rewards member pricing which is often lower than the shelf price.</li>
-            <li>Always make sure you're <strong>logged in to Woolworths with your Everyday Rewards account</strong> before scanning — this gives you the most accurate and personally relevant comparison.</li>
+            <li><strong>This is correct, and it's the point.</strong> CartChkr shows the prices <em>you</em> actually pay. Member pricing is often below shelf price, so signing in changes the numbers.</li>
+            <li><strong>Stay signed in</strong> to Woolworths with Everyday Rewards and Coles with Flybuys, and the comparison reflects real money rather than list prices.</li>
           </ol>
-          <div class="kb-note">Member specials are included automatically. The comparison you see reflects YOUR prices, not the general shelf price.</div>
+          <div class="kb-note">It also means two people can legitimately get different answers for the same product on the same day. Yours are the ones that matter.</div>
         </div>
       </div>
 
@@ -549,18 +549,20 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
           <div class="kb-card-header-left">
             <span class="kb-id">KB-009</span>
             <span class="kb-cat-badge cat-limitation">Known limitation</span>
-            <span class="kb-card-title">Bot-block warning shown during scan</span>
+            <span class="kb-card-title">Blocked by store bot detection / "verify you're human"</span>
           </div>
           <span class="kb-chevron">▼</span>
         </div>
         <div class="kb-card-body">
-          <p class="kb-symptoms">CartChkr shows a bot-block warning; some items can't be compared.</p>
+          <p class="kb-symptoms">Items fail to compare, a human-verification screen appears, or a store tab won't load.</p>
           <ol class="kb-steps">
-            <li>This is <strong>temporary</strong> — Woolies and Coles have security systems that occasionally flag the comparison requests. It usually clears within 5–10 minutes.</li>
-            <li>Browse the affected store's website normally for 1–2 minutes (scroll through products, add something to cart) to reset your session.</li>
-            <li>Scan again. The block almost always clears on the next attempt.</li>
-            <li>Scanning <strong>smaller carts (under 30 items)</strong> is less likely to trigger this.</li>
+            <li>Tap the <strong>Coles</strong> (or <strong>Woolies</strong>) tab inside CartChkr.</li>
+            <li>Wait 5–10 seconds for the check to finish, and complete any verification step that appears.</li>
+            <li>Go back to the CartChkr tab and check again.</li>
+            <li><strong>Happening every shop?</strong> Sign out and back in at the store — that clears stuck session state.</li>
+            
           </ol>
+          <div class="kb-note">Both chains run security checks that occasionally challenge traffic looking automated, and a check makes a lot of searches in a short window. <strong>It isn't a ban, and it isn't CartChkr being singled out.</strong> We're still working on making this invisible — we won't pretend it's solved.</div>
         </div>
       </div>
 
@@ -570,17 +572,161 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
           <div class="kb-card-header-left">
             <span class="kb-id">KB-010</span>
             <span class="kb-cat-badge cat-user">User-side</span>
-            <span class="kb-card-title">Payment made but Move is still locked</span>
+            <span class="kb-card-title">Paid but Move is still locked / restoring on a new phone</span>
           </div>
           <span class="kb-chevron">▼</span>
         </div>
         <div class="kb-card-body">
-          <p class="kb-symptoms">You paid but the Move button still shows the upgrade prompt.</p>
+          <p class="kb-symptoms">You've paid but Move or Price History still shows the unlock prompt — or you've got a new phone and want your purchase back.</p>
           <ol class="kb-steps">
-            <li><strong>Close the CartChkr panel completely</strong> — click the ✕ or the toolbar icon to close it.</li>
-            <li><strong>Reopen CartChkr</strong> by clicking the toolbar icon again. The licence check runs fresh every time the panel opens.</li>
-            <li>The Move feature should now be unlocked. If it's still showing the upgrade prompt after reopening, email <a href="mailto:support@cartchkr.com.au">support@cartchkr.com.au</a> with your payment confirmation and we'll sort it out manually.</li>
+            <li><strong>More → Restore.</strong> It's also on the unlock screen as "Already paid, or got a code? Restore". This re-checks with Apple or Google directly and is the fastest fix.</li>
+            <li>If that doesn't do it, fully close the app and reopen — the check runs again at launch.</li>
+            <li><strong>Check which store account you're signed in to.</strong> Being signed in to a different App Store or Google Play account from the one that paid is by far the commonest cause.</li>
+            <li>Right account and still locked? Email us your Apple or Google receipt and we'll activate you manually.</li>
           </ol>
+          <div class="kb-note">Your unlock lives with your App Store or Google Play account, not the handset, so it follows you to a new phone for free. Note the app and the Chrome extension are billed separately — different stores, different payment systems — so buying one doesn't unlock the other.<br><br><strong>Chrome extension:</strong> close the side panel completely and reopen it. The licence check runs on every open.</div>
+        </div>
+      </div>
+
+      <!-- KB-011 -->
+      <div class="kb-card" id="KB-011">
+        <div class="kb-card-header" onclick="toggleKb(this)">
+          <div class="kb-card-header-left">
+            <span class="kb-id">KB-011</span>
+            <span class="kb-cat-badge cat-bug">Confirmed bug</span>
+            <span class="kb-card-title">Short, generic searches match badly</span>
+          </div>
+          <span class="kb-chevron">▼</span>
+        </div>
+        <div class="kb-card-body">
+          <p class="kb-symptoms">A short typed or dictated item comes back wrong — or not at all — while adding a word or two to the same item works fine.</p>
+          <ol class="kb-steps">
+            <li><strong>Tap "Wrong match?"</strong> and pick the right product. The pairing sticks for next time.</li>
+            <li><strong>More words help a lot right now.</strong> Add a brand, a size, or a form: "500g chicken breast fillets" rather than "chicken breast".</li>
+          </ol>
+          <div class="kb-note">We know exactly what causes this and it's our top engineering priority. Our matching was built to compare one full product name against another, and we've been using it unchanged to compare the handful of words you type against a full product name — so short items score far too low and get thrown away. Real example: "chicken breast fillet" matched correctly while plain "chicken breast" was rejected outright. We're not going to promise a date, but this is the thing we're working on.</div>
+        </div>
+      </div>
+
+      <!-- KB-012 -->
+      <div class="kb-card" id="KB-012">
+        <div class="kb-card-header" onclick="toggleKb(this)">
+          <div class="kb-card-header-left">
+            <span class="kb-id">KB-012</span>
+            <span class="kb-cat-badge cat-limitation">Known limitation</span>
+            <span class="kb-card-title">Overseas or on a VPN — the stores won't load</span>
+          </div>
+          <span class="kb-chevron">▼</span>
+        </div>
+        <div class="kb-card-body">
+          <p class="kb-symptoms">"Access Denied", store tabs that won't load, nothing can be checked.</p>
+          <ol class="kb-steps">
+            <li><strong>Turn your VPN off</strong>, or set it to an Australian server, and try again.</li>
+            <li><strong>Genuinely overseas?</strong> Use <strong>More → Demo Mode</strong> — it walks the full flow with no store connection at all.</li>
+          </ol>
+          <div class="kb-note">Woolworths and Coles restrict their own websites to Australian IP addresses. That "Access Denied" page is served by the retailer, not by us, and there's nothing CartChkr can do about it. CartChkr is published for Australia only.</div>
+        </div>
+      </div>
+
+      <!-- KB-013 -->
+      <div class="kb-card" id="KB-013">
+        <div class="kb-card-header" onclick="toggleKb(this)">
+          <div class="kb-card-header-left">
+            <span class="kb-id">KB-013</span>
+            <span class="kb-cat-badge cat-bug">Confirmed bug</span>
+            <span class="kb-card-title">An item in my CartChkr Cart keeps an old, wrong answer</span>
+          </div>
+          <span class="kb-chevron">▼</span>
+        </div>
+        <div class="kb-card-body">
+          <p class="kb-symptoms">An item you added a while back still shows a match or price that looks stale — and deleting it and adding it again gives a better answer.</p>
+          <ol class="kb-steps">
+            <li><strong>Delete that line and add the item again.</strong> It'll be priced fresh.</li>
+            <li>If several lines look stale, tap <strong>Clear Cart</strong> and rebuild.</li>
+          </ol>
+          <div class="kb-note">Known behaviour, and annoying: a line in your CartChkr Cart keeps the answer it got when you added it, so matching improvements we ship afterwards don't reach it. We're changing this so lines re-price themselves. Until then, re-adding is the fix.</div>
+        </div>
+      </div>
+
+      <!-- KB-014 -->
+      <div class="kb-card" id="KB-014">
+        <div class="kb-card-header" onclick="toggleKb(this)">
+          <div class="kb-card-header-left">
+            <span class="kb-id">KB-014</span>
+            <span class="kb-cat-badge cat-user">Working as intended</span>
+            <span class="kb-card-title">Out-of-stock item shows no price — and fewer items matched</span>
+          </div>
+          <span class="kb-chevron">▼</span>
+        </div>
+        <div class="kb-card-body">
+          <p class="kb-symptoms">An item reads "Out of stock at {store} — not counted toward your saving", or fewer items matched than on a previous check.</p>
+          <ol class="kb-steps">
+            <li><strong>This is deliberate.</strong> A price you can't buy at isn't a saving, so we don't quote you a number that would collapse at checkout.</li>
+            <li><strong>We won't pick a substitute for you</strong> — what's an acceptable swap is your call. Tap <strong>Wrong match?</strong> if you want to choose one.</li>
+            <li><strong>Fewer matches than before is expected and correct</strong>, not a regression. Same if you're seeing more "Check match" chips: a size or pack difference that used to pass in silence now says so.</li>
+          </ol>
+          <div class="kb-note">This matters more than it sounds. Coles prints a perfectly normal-looking price on products it can't actually sell you — reading the website yourself, you'd have no idea.</div>
+        </div>
+      </div>
+
+      <!-- KB-015 -->
+      <div class="kb-card" id="KB-015">
+        <div class="kb-card-header" onclick="toggleKb(this)">
+          <div class="kb-card-header-left">
+            <span class="kb-id">KB-015</span>
+            <span class="kb-cat-badge cat-limitation">Known limitation</span>
+            <span class="kb-card-title">Where's the microphone? Voice doesn't do anything</span>
+          </div>
+          <span class="kb-chevron">▼</span>
+        </div>
+        <div class="kb-card-body">
+          <p class="kb-symptoms">You tapped Voice expecting to start talking, and nothing listened.</p>
+          <ol class="kb-steps">
+            <li><strong>Tap Voice, then tap the microphone on your own keyboard</strong> and talk. CartChkr opens the text box and puts the cursor in it; your keyboard does the listening.</li>
+            <li><strong>On Android</strong>, if the keyboard mic does nothing, turn on <strong>Voice Typing</strong> in your keyboard settings. CartChkr offers a shortcut to that screen when it spots the problem.</li>
+          </ol>
+          <div class="kb-note">This is a platform limitation rather than an oversight — iOS gives apps no way to trigger keyboard dictation, so the honest thing is to hand you to the keyboard that already does it well. One quirk: dictation drops commas, so three items can arrive as one line. We try to split them back apart, and every line is editable by hand.</div>
+        </div>
+      </div>
+
+      <!-- KB-016 -->
+      <div class="kb-card" id="KB-016">
+        <div class="kb-card-header" onclick="toggleKb(this)">
+          <div class="kb-card-header-left">
+            <span class="kb-id">KB-016</span>
+            <span class="kb-cat-badge cat-limitation">Known limitation</span>
+            <span class="kb-card-title">A check was unusually slow</span>
+          </div>
+          <span class="kb-chevron">▼</span>
+        </div>
+        <div class="kb-card-body">
+          <p class="kb-symptoms">A check took far longer than usual — particularly the first one after an app update.</p>
+          <ol class="kb-steps">
+            <li><strong>The first check after an update is slower by design</strong>, and it's a one-off. CartChkr re-prices everything from scratch rather than trusting answers worked out by an older version. The next check is back to normal.</li>
+            <li><strong>How long it takes depends on how many items there are</strong> — each one is its own lookup at the other store. Leave CartChkr open and it'll work through them.</li>
+          </ol>
+          <div class="kb-note">The slow items are the ones we struggle to identify: a wrong guess sends us on an expensive hunt that can't succeed. So the matching work in KB-011 should speed this up as a side effect.</div>
+        </div>
+      </div>
+
+      <!-- KB-017 -->
+      <div class="kb-card" id="KB-017">
+        <div class="kb-card-header" onclick="toggleKb(this)">
+          <div class="kb-card-header-left">
+            <span class="kb-id">KB-017</span>
+            <span class="kb-cat-badge cat-user">User-side</span>
+            <span class="kb-card-title">Refunds — and there's no subscription to cancel</span>
+          </div>
+          <span class="kb-chevron">▼</span>
+        </div>
+        <div class="kb-card-body">
+          <p class="kb-symptoms">You want your money back, or you're looking for a subscription to cancel.</p>
+          <ol class="kb-steps">
+            <li><strong>There's nothing to cancel.</strong> Founding (99¢) and Lifetime ($3.99) are one-time purchases. Nothing recurs and nothing auto-renews.</li>
+            <li><strong>Refunds: email <a href="mailto:support@cartchkr.com.au">support@cartchkr.com.au</a> within 14 days</strong> and we'll sort you out, no questions asked.</li>
+            <li>In-app purchases are processed by Apple or Google, so the refund goes through them — we'll tell you exactly how, or do it for you where we can. Extension purchases refund through Stripe in 5–10 business days.</li>
+          </ol>
+          <div class="kb-note">If something fell short we'd like to know, but it isn't a condition of the refund.</div>
         </div>
       </div>
 
@@ -603,14 +749,25 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
           Is CartChkr free? <span class="faq-chevron">▼</span>
         </div>
         <div class="faq-a">
-          <p><span class="pill pill-free">Free</span> Scanning is completely free. Add items to your Woolies or Coles cart, press Scan, and CartChkr will compare every item against the other store and show you which is cheaper — no payment required, ever.</p>
-          <p><span class="pill pill-paid">Paid</span> The <strong>Move</strong> feature — which transfers your whole cart to the cheaper store in one click — requires a licence. We offer three options:</p>
+          <p><span class="pill pill-free">Free</span> <strong>Comparing prices is free, forever.</strong> That covers a Quick Price Check, building and pricing a CartChkr Cart, receipt scanning, scanning your live Woolies or Coles cart, the full item-by-item comparison, and per-unit prices on every item. No payment, no trial, no limit.</p>
+          <p><span class="pill pill-paid">Paid</span> A <strong>one-time</strong> unlock adds the two things that act on the comparison — <strong>Move</strong> (switching items to the cheaper store) and <strong>Price History &amp; Good Buy Analysis</strong>. There's no subscription:</p>
           <ul>
             <li><strong>Founding Member</strong> — 99¢ one-time (limited-time early adopter price)</li>
             <li><strong>Lifetime</strong> — $3.99 one-time, full access forever</li>
             <!-- SUBSCRIPTION-OFF (MVP): <li><strong>Monthly</strong> — $2.99/month, full access + early access to new stores</li> -->
           </ul>
-          <p>Most users save $15–$25 per shop, so the licence pays for itself the first time you use it.</p>
+          <p>Either one unlocks both features, on every device signed in to the same App Store or Google Play account.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          What is the CartChkr Cart? <span class="faq-chevron">▼</span>
+        </div>
+        <div class="faq-a">
+          <p>A shopping list that knows what things cost at both stores — so you can compare a shop <em>before</em> you've done it, instead of filling a trolley at one chain and hoping.</p>
+          <p>Four ways to fill it, and you can mix them freely: <strong>scan a receipt</strong> and the whole shop comes in at once; <strong>photograph a product</strong> and we read the label; <strong>type a list</strong> ("milk 2L, bread, a dozen eggs"); or tap <strong>Voice</strong> and dictate it.</p>
+          <p>Every line gets priced at Woolies and at Coles with a running subtotal for each, so you can see which store wins overall. Pick a <strong>Preferred Store</strong> and <strong>Move All</strong> loads items into that store's real cart when you're ready — either just the cheaper ones or the lot. Building and pricing it is free; moving items into a store cart is part of the paid unlock.</p>
         </div>
       </div>
 
@@ -619,17 +776,44 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
           How does CartChkr compare prices? <span class="faq-chevron">▼</span>
         </div>
         <div class="faq-a">
-          <p>CartChkr reads your cart directly from Woolworths or Coles using your logged-in session — in the phone app or the Chrome extension. It then searches for each item at the other store and compares the live prices — including any member specials, Everyday Rewards pricing, or Coles member discounts you're entitled to.</p>
-          <p>Everything runs locally on your device. CartChkr never sends your cart contents, login details, or personal information anywhere.</p>
+          <p>Either from a list you give it, or from a cart you've already filled. For a Quick Price Check it takes your items — photo, receipt, typed or dictated — and prices each one at both chains. For a live cart it reads your trolley using your own signed-in session and looks up each item at the other store.</p>
+          <p>Prices are live, and include any member specials, Everyday Rewards pricing or Flybuys discounts you're entitled to. Your cart stays on your device — CartChkr never sends your cart contents, login details or personal information to any server of ours. There are two narrow exceptions, billing and Price History, both spelled out in the privacy answer below.</p>
         </div>
       </div>
 
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">
-          Does CartChkr work with Everyday Rewards? <span class="faq-chevron">▼</span>
+          What do the grey chips on an item mean? <span class="faq-chevron">▼</span>
         </div>
         <div class="faq-a">
-          <p>Yes. As long as you're logged in to Woolworths with your Everyday Rewards account before scanning, CartChkr will use your member pricing automatically. The comparison you see reflects your actual prices — not the general shelf price.</p>
+          <p>They're how CartChkr tells you it isn't certain, rather than quietly pretending it is. You'll only ever see one per item — the most important one.</p>
+          <ul>
+            <li><strong>Check match</strong> — general doubt: we may have the wrong product entirely. It deliberately doesn't claim to know what's wrong, because it doesn't.</li>
+            <li><strong>Check quantity</strong> — you asked for several and the match is a multipack. Ask for 6 bananas, match a 5-pack, that's 30 bananas. We say so rather than multiply silently.</li>
+            <li><strong>Size may differ</strong> — right product, different amount. If we could normalise the sizes it still counts toward your saving; if we couldn't, it says "not counted" and we leave it out.</li>
+            <li><strong>Different brand</strong> — that chain stocks none of your brand at all. A difference in who made it, not necessarily in what you pay.</li>
+          </ul>
+          <p>Tap an item to see the reason spelled out. If a chip is on something we got wrong, tap <strong>Wrong match?</strong> and pick the right product — we'll remember it.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Does CartChkr work with Everyday Rewards and Flybuys? <span class="faq-chevron">▼</span>
+        </div>
+        <div class="faq-a">
+          <p>Yes, and it's one of the better reasons to sign in. When you're signed in at Woolworths with Everyday Rewards and at Coles with Flybuys, CartChkr sees the prices <em>you</em> actually pay — member specials and reward pricing are baked into the comparison, not the general shelf price.</p>
+          <p>It also means two people can legitimately get different answers for the same product on the same day. Yours are the ones that matter.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Why does an out-of-stock item show no price? <span class="faq-chevron">▼</span>
+        </div>
+        <div class="faq-a">
+          <p>Because a price you can't actually buy at isn't a saving. If the other store is out of that product, CartChkr says so and leaves it out of your total rather than quoting a number that would collapse at checkout. We also don't pick a substitute for you — what's an acceptable swap is your call, so tap <strong>Wrong match?</strong> if you want to choose one.</p>
+          <p>This matters more than it sounds: Coles prints a perfectly normal-looking price on products it can't sell you. Reading the website yourself, you'd have no idea.</p>
         </div>
       </div>
 
@@ -638,37 +822,38 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
           Is my data private? Does CartChkr collect anything? <span class="faq-chevron">▼</span>
         </div>
         <div class="faq-a">
-          <p>CartChkr does not collect, store, or transmit your cart contents, passwords, payment details, or any personal information. Everything runs locally on your device.</p>
-          <p>CartChkr contacts outside services only for billing (<strong>ExtensionPay</strong>/Stripe on the extension, or the App Store/Google Play on mobile) to verify a licence you've bought, and — if you open an item's Price History — to look up that product's barcode/store code (never your cart or any personal data). See our <a href="/privacy">Privacy Policy</a> for full details.</p>
+          <p><strong>Your cart stays on your device.</strong> What you buy, when you shop and what's in your trolley is never sent to any server we control. There's no analytics or telemetry either, which is why there's nothing to opt out of. We never see your Woolies or Coles password — you sign in on each store's own secure page.</p>
+          <p>Two deliberate exceptions, both narrow. <strong>Price History</strong> sends only that product's barcode or store code over a secure connection to our own price-history service — not your cart, account, name or device. <strong>Billing</strong> goes through Apple or Google (ExtensionPay and Stripe on the extension); they see that you paid, and nothing about your shopping. Full detail in the <a href="/privacy">Privacy Policy</a>.</p>
         </div>
       </div>
 
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">
-          Why does the same item sometimes cost more at Woolies one week and less the next? <span class="faq-chevron">▼</span>
+          Why is Woolies cheaper one week and Coles the next? <span class="faq-chevron">▼</span>
         </div>
         <div class="faq-a">
-          <p>Woolworths and Coles run weekly specials that rotate constantly. Hundreds of items change price every week depending on supplier deals, promotional calendars, and competition between the stores. There's no consistent pattern — the cheaper store genuinely changes week to week for most households.</p>
-          <p>That's exactly why CartChkr exists: checking manually takes 20+ minutes. CartChkr does it in 10 seconds.</p>
+          <p>Both chains rotate specials constantly — hundreds of items change price every week on supplier deals, promotional calendars, and whatever the other one is doing. There's no stable pattern, and for most households the cheaper store genuinely does change week to week.</p>
+          <p>Which is the whole point. The published basket comparisons you see in the news track a short list of items in a past month. That doesn't tell you whether <em>your</em> trolley is cheaper this week. Checking that by hand takes twenty minutes; CartChkr does it in seconds, free.</p>
         </div>
       </div>
 
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">
-          Does CartChkr work on mobile? <span class="faq-chevron">▼</span>
+          What does CartChkr run on? <span class="faq-chevron">▼</span>
         </div>
         <div class="faq-a">
-          <p>Yes — there's a free CartChkr app for <strong>iPhone and Android</strong> that scans, compares and moves your trolley right on your phone. Grab it from the App Store or Google Play.</p>
-          <p>On a computer, CartChkr is a <strong>Chrome extension</strong> (Chrome, Brave, Edge and other Chromium browsers). The extension itself only runs on desktop — Chrome for iOS/Android doesn't support extensions — so on your phone, use the app instead.</p>
+          <p><strong>Phone — the main way to use it.</strong> A free app for iPhone and Android, available in Australia. Everything on this page works there.</p>
+          <p><strong>Desktop.</strong> A Chrome extension that also runs in Edge, Brave, Arc, Opera and Vivaldi. It's a smaller tool: Woolies-to-Coles only, one direction, with no CartChkr Cart and no Price History. It doesn't run on Safari or Firefox, or in any mobile browser — Chrome for iOS and Android don't support extensions at all. Firefox support is on the roadmap.</p>
+          <p>Both stores restrict their own websites to Australian IP addresses, so you'll need to be in Australia and off a VPN — see the overseas/VPN article in the Knowledge Base.</p>
         </div>
       </div>
 
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">
-          Can CartChkr compare ALDI prices too? <span class="faq-chevron">▼</span>
+          Can CartChkr compare ALDI, IGA or Costco? <span class="faq-chevron">▼</span>
         </div>
         <div class="faq-a">
-          <p>Not yet. CartChkr currently compares Woolworths and Coles. ALDI doesn't have a comparable online shopping experience with cart functionality, which makes comparison technically different. It's on the roadmap.</p>
+          <p>Not yet — it's Woolworths and Coles, the two chains with comparable online trolleys. ALDI doesn't offer the same online cart, and IGA and Costco vary store by store. New Zealand is next on our list (Pak'nSave and Woolworths NZ), then we'll revisit the Australian options.</p>
         </div>
       </div>
 
@@ -677,18 +862,18 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
           Is there a subscription I need to cancel? <span class="faq-chevron">▼</span>
         </div>
         <div class="faq-a">
-          <p>No — there's no subscription. Founding (99¢) and Lifetime ($3.99) are <strong>one-time</strong> purchases, so nothing recurs and there's nothing to cancel.</p>
-          <p>Changed your mind within 14 days of buying? Email <a href="mailto:support@cartchkr.com.au">support@cartchkr.com.au</a> and we'll refund you, no fuss.</p>
+          <p>No. Founding (99¢) and Lifetime ($3.99) are <strong>one-time</strong> purchases. Nothing recurs, nothing auto-renews, and there's nothing to cancel.</p>
+          <p>Changed your mind within 14 days? Email <a href="mailto:support@cartchkr.com.au">support@cartchkr.com.au</a> and we'll refund you, no fuss. In-app purchases are processed by Apple or Google so the refund goes through them — we'll tell you exactly how.</p>
         </div>
       </div>
 
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">
-          I paid but the Move feature is still locked — what do I do? <span class="faq-chevron">▼</span>
+          I paid but Move is still locked — what do I do? <span class="faq-chevron">▼</span>
         </div>
         <div class="faq-a">
-          <p>Close the CartChkr side panel completely (click the ✕ or toolbar icon), then reopen it. The licence check runs fresh every time the panel opens and should activate immediately.</p>
-          <p>If it's still locked after reopening, email <a href="mailto:support@cartchkr.com.au">support@cartchkr.com.au</a> with your payment confirmation email and we'll manually verify and activate your account.</p>
+          <p>Tap <strong>Restore</strong> in <strong>More</strong> — that re-checks your purchase with Apple or Google directly and is the quickest fix. If that doesn't do it, fully close the app and reopen it; the check runs again at launch.</p>
+          <p>Still locked? Check you're signed in to the same App Store or Google Play account that paid — that's by far the commonest cause. If it is the right account, email <a href="mailto:support@cartchkr.com.au">support@cartchkr.com.au</a> with your receipt and we'll activate you manually. On the Chrome extension, close the side panel completely and reopen it.</p>
         </div>
       </div>
 
@@ -697,7 +882,7 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
           Is CartChkr affiliated with Woolworths or Coles? <span class="faq-chevron">▼</span>
         </div>
         <div class="faq-a">
-          <p>No. CartChkr is an independent tool built by an Australian developer. It is not affiliated with, endorsed by, or connected to Woolworths Group or Coles Group in any way.</p>
+          <p>No. CartChkr is independent, built by an Australian developer, and is not affiliated with, endorsed by, or sponsored by Woolworths Group Limited or Coles Group Limited. We shop there like everyone else and got sick of comparing prices by hand.</p>
         </div>
       </div>
 
@@ -709,12 +894,72 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
     <h2 class="section-title">Release Notes</h2>
     <div class="releases">
 
+      <!-- App v1.0.106 — October 2026 -->
+      <div class="release">
+        <div class="release-header">
+          <span class="release-version">App v1.0.106</span>
+          <span class="release-date">October 2026</span>
+          <span class="release-badge badge-latest">Latest</span>
+        </div>
+        <div class="release-body">
+
+          <div class="release-section">
+            <div class="release-section-title">🛒 New — the CartChkr Cart</div>
+            <ul class="release-items">
+              <li><span class="ri ri-new">✦</span><span><strong>Compare a shop before you've done it.</strong> You no longer have to fill a trolley at one chain to find out it was the wrong one. Build a CartChkr Cart instead and we price every item at Woolies <em>and</em> Coles, with a running subtotal for each, so you can see which store wins before you commit. No sign-in needed to check prices.</span></li>
+              <li><span class="ri ri-new">✦</span><span><strong>Four ways to fill it — mix them freely.</strong> Photograph a receipt and the whole shop comes in at once. Photograph the front of a pack and we read the label. Type a list ("milk 2L, bread, a dozen eggs"). Or tap Voice and dictate it.</span></li>
+              <li><span class="ri ri-new">✦</span><span><strong>Move All, when you're ready.</strong> Pick your Preferred Store and load the items into its real cart in one go — either just the cheaper ones, with the saving shown, or the lot. Clear Cart empties it and starts again.</span></li>
+              <li><span class="ri ri-new">✦</span><span><strong>Edit any line.</strong> A photo or a dictation can mishear you, so every item is editable and every item offers alternatives — not just the ones we failed on.</span></li>
+            </ul>
+          </div>
+
+          <div class="release-section">
+            <div class="release-section-title">📈 New — Price History &amp; Good Buy Analysis</div>
+            <ul class="release-items">
+              <li><span class="ri ri-new">✦</span><span><strong>Know whether today's price is actually good.</strong> Open More Price Info on any item for a plain verdict — <strong>Good buy</strong>, <strong>Usual price</strong> or <strong>Seen cheaper</strong> — with what the item usually costs, its lowest in about the last 60 days, and a small history chart. Stop "saving" by switching to a price that's quietly high, and judge a sticker special for yourself. Part of the same one-time unlock as Move.</span></li>
+              <li><span class="ri ri-new">✦</span><span><strong>Honest by design.</strong> We use the median as "usual" rather than the flattering number, we tell you how much history we actually have, and when an item is on special we use the store's own declared "was" price instead of our guess. A product with little history says "Usual price" until there's enough to say more.</span></li>
+            </ul>
+          </div>
+
+          <div class="release-section">
+            <div class="release-section-title">✅ New — we'd rather say "we're not sure" than guess</div>
+            <ul class="release-items">
+              <li><span class="ri ri-new">✦</span><span><strong>Out-of-stock products are now refused at both chains.</strong> A price you can't buy at isn't a saving. Out-of-stock items are shown as out of stock and left out of your total, instead of being priced and offered for Move. This matters more than it sounds: Coles prints a perfectly normal-looking price on products it can't sell you. We also don't pick a substitute for you — that's your call.</span></li>
+              <li><span class="ri ri-new">✦</span><span><strong>Razors no longer match lemons.</strong> A new category check sits between your item and the match and blocks cross-aisle nonsense — pet food against chicken breast, cleaning products against food. Tested across 11,263 real grocery rows with no correct match lost.</span></li>
+              <li><span class="ri ri-improve">●</span><span><strong>Clearer, calmer chips.</strong> Four, in plain words, and only ever the most important one per item: <strong>Check match</strong> (we may have the wrong product), <strong>Check quantity</strong> (you asked for 6 and this is a 5-pack — that's 30), <strong>Size may differ</strong> (right product, different amount), <strong>Different brand</strong> (that chain stocks none of yours). "Check brand" became "Different brand" and "Sizes differ" became "Size may differ" — honest, and less alarming.</span></li>
+              <li><span class="ri ri-improve">●</span><span><strong>"Wrong match?" always gives you somewhere to go.</strong> It now offers the closest alternatives we found, and when there are genuinely none the button becomes <strong>Search {store} store</strong> so you can look yourself. Picking a product there teaches CartChkr the pairing for good.</span></li>
+            </ul>
+          </div>
+
+          <div class="release-section">
+            <div class="release-section-title">⚡ Faster, and more accurate where it counts</div>
+            <ul class="release-items">
+              <li><span class="ri ri-improve">●</span><span><strong>Per-unit prices rebuilt.</strong> One shared rule now does the maths everywhere, replacing four copies that had quietly drifted apart. Measured against Woolworths' own published cup price across 5,738 products, we now agree 99.3% of the time — up from 96.3%.</span></li>
+              <li><span class="ri ri-improve">●</span><span><strong>Near-instant store sign-in.</strong> CartChkr reads your sign-in state the moment it launches instead of sitting on "Checking…" for the better part of half a minute.</span></li>
+              <li><span class="ri ri-improve">●</span><span><strong>Specials show their "was" price</strong> on cart items, so you can see the size of the discount rather than taking the sticker's word for it.</span></li>
+              <li><span class="ri ri-improve">●</span><span><strong>Your saving total only counts what it can stand behind.</strong> A headline saving no longer includes a line where only one store had a product.</span></li>
+              <li><span class="ri ri-improve">●</span><span><strong>Bought Before</strong> — CartChkr favours the products you actually buy at the other store, and now keeps doing so when a list line gets split into several items.</span></li>
+            </ul>
+          </div>
+
+          <div class="release-section">
+            <div class="release-section-title">📱 Also in this version</div>
+            <ul class="release-items">
+              <li><span class="ri ri-new">✦</span><span><strong>Demo Mode</strong> — walk the whole flow on a sample 32-item cart with no login, no purchase and no store connection. In <strong>More</strong>. Handy if you're overseas, or just want a look first.</span></li>
+              <li><span class="ri ri-improve">●</span><span><strong>Both directions, both stores.</strong> Scan from Woolies or from Coles, and move either way. Still free to compare, always.</span></li>
+              <li><span class="ri ri-improve">●</span><span><strong>Saved matches</strong> — in <strong>More</strong>, everything you've confirmed or blocked, with an undo on each.</span></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
       <!-- October 2026 -->
       <div class="release">
         <div class="release-header">
-          <span class="release-version">App v1.0 · Ext v0.3.29</span>
+          <span class="release-version">App v1.0 launch · Ext v0.3.29</span>
           <span class="release-date">October 2026</span>
-          <span class="release-badge badge-latest">Latest</span>
+          <span class="release-badge badge-stable">Previous</span>
         </div>
         <div class="release-body">
           <div class="release-section">
@@ -847,29 +1092,39 @@ src="https://www.facebook.com/tr?id=845119155340465&ev=PageView&noscript=1"/></n
 <script>
 // ── Search index ─────────────────────────────────────────────────────────────
 const KB_INDEX = [
-  { id:'KB-001', title:'Extension shows nothing / blank panel',       keywords:'blank nothing showing not loading spinner empty panel white screen' },
-  { id:'KB-002', title:'Wrong price shown for an item',               keywords:'wrong price incorrect price doesnt match price is wrong showing wrong price' },
-  { id:'KB-003', title:'Item shows no match',                         keywords:'no match cant find not finding missing items item not found doesnt find' },
-  { id:'KB-004', title:'Wrong product matched',                       keywords:'wrong match wrong product different brand wrong size not the same product' },
-  { id:'KB-005', title:'Move button doesn\'t work',                   keywords:'move doesnt work move failed not adding cant move switch failed button not working move button' },
-  { id:'KB-006', title:'Scan failed or returned no results',          keywords:'scan failed scan error not working 0 results no results error during scan' },
-  { id:'KB-007', title:'Can\'t find CartChkr after installing',       keywords:'cant find extension where is it not visible disappeared cant see cartchkr not in toolbar' },
-  { id:'KB-008', title:'Prices changed after Everyday Rewards login', keywords:'everyday rewards member price logged in price prices changed' },
-  { id:'KB-009', title:'Bot-block warning shown during scan',         keywords:'bot block blocked incapsula captcha being blocked security block banned' },
-  { id:'KB-010', title:'Payment made but Move is still locked',       keywords:'paid but still locked still showing upgrade payment not working licence not working cant access move after paying purchased but' },
+  { id:'KB-001', title:'App opens to a blank or stuck screen',          keywords:'blank blank screen nothing showing nothing happens not loading spinner stuck frozen empty white screen wont load keeps loading' },
+  { id:'KB-002', title:'Wrong price shown for an item',                 keywords:'wrong price incorrect price price doesnt match price is wrong showing wrong price price difference unit price per 100g per kg' },
+  { id:'KB-003', title:'Item shows no match',                           keywords:'no match no matches cant find not finding missing items item not found doesnt find didnt find not matched' },
+  { id:'KB-004', title:'Wrong product matched',                         keywords:'wrong match wrong product wrong item different brand wrong size wrong flavour wrong flavor not the same matched to nothing like' },
+  { id:'KB-005', title:'Move didn\'t work / item not added',            keywords:'move doesnt work move didnt work move failed not adding cant move move all didnt transfer nothing moved move button' },
+  { id:'KB-006', title:'A check failed or returned nothing',            keywords:'scan failed scan error check failed not working 0 results no results error nothing happened wont scan cant scan' },
+  { id:'KB-007', title:'Where do I start? Can\'t find a feature',       keywords:'cant find where is how do i start how do i use not visible disappeared cant see getting started what do i do demo mode' },
+  { id:'KB-008', title:'Prices changed after Everyday Rewards login',   keywords:'everyday rewards flybuys member price member pricing logged in price prices changed different price to my friend' },
+  { id:'KB-009', title:'Blocked by store bot detection',                keywords:'bot bot block blocked incapsula imperva akamai captcha verify youre human verify im human banned security check access denied' },
+  { id:'KB-010', title:'Paid but Move is still locked / Restore',       keywords:'paid but already paid still locked still showing upgrade payment not working licence not working license not working cant access move restore new phone purchased but bought it but' },
+  { id:'KB-011', title:'Short, generic searches match badly',           keywords:'generic short typed one word simple search basic item nothing like what i asked completely wrong chicken breast' },
+  { id:'KB-012', title:'Overseas or on a VPN — stores won\'t load',     keywords:'vpn overseas access denied not in australia travelling traveling abroad outside australia region geoblock' },
+  { id:'KB-013', title:'CartChkr Cart line keeps an old answer',        keywords:'old match still showing stale didnt update hasnt updated same wrong match after update still wrong after' },
+  { id:'KB-014', title:'Out-of-stock item shows no price',              keywords:'out of stock no price not counted fewer matches less matches fewer items matched stopped matching used to match worked before' },
+  { id:'KB-015', title:'Where\'s the microphone? Voice does nothing',   keywords:'microphone mic voice dictate dictation speak say it voice doesnt work voice typing talk to it' },
+  { id:'KB-016', title:'A check was unusually slow',                    keywords:'slow slowly taking ages takes forever so long waiting minutes timed out timeout' },
+  { id:'KB-017', title:'Refunds — and there\'s no subscription',        keywords:'refund money back cancel my purchase want a refund chargeback cancel subscription' },
 ];
 
 const FAQ_INDEX = [
-  { text:'Is CartChkr free?',                              idx:0 },
-  { text:'How does CartChkr compare prices?',              idx:1 },
-  { text:'Everyday Rewards member pricing',                idx:2 },
-  { text:'Privacy — does CartChkr collect data?',          idx:3 },
-  { text:'Why do prices change week to week?',             idx:4 },
-  { text:'Does CartChkr work on mobile?',                  idx:5 },
-  { text:'ALDI — can CartChkr compare ALDI?',              idx:6 },
-  { text:'Is there a subscription I need to cancel?',      idx:7 },
-  { text:'Paid but Move is still locked',                  idx:8 },
-  { text:'Is CartChkr affiliated with Woolworths or Coles?', idx:9 },
+  { text:'Is CartChkr free?',                                 idx:0 },
+  { text:'What is the CartChkr Cart?',                        idx:1 },
+  { text:'How does CartChkr compare prices?',                 idx:2 },
+  { text:'What do the grey chips on an item mean?',           idx:3 },
+  { text:'Everyday Rewards and Flybuys member pricing',       idx:4 },
+  { text:'Why does an out-of-stock item show no price?',      idx:5 },
+  { text:'Privacy — does CartChkr collect data?',             idx:6 },
+  { text:'Why do prices change week to week?',                idx:7 },
+  { text:'What does CartChkr run on? (phone, Chrome)',        idx:8 },
+  { text:'ALDI, IGA, Costco — can CartChkr compare them?',    idx:9 },
+  { text:'Is there a subscription I need to cancel?',         idx:10 },
+  { text:'Paid but Move is still locked',                     idx:11 },
+  { text:'Is CartChkr affiliated with Woolworths or Coles?',  idx:12 },
 ];
 
 const input = document.getElementById('searchInput');
